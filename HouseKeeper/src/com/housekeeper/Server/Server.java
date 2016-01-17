@@ -28,8 +28,8 @@ public class Server implements Runnable{
             e.printStackTrace();
             return;
         }
-        running = true;
 
+        running = true;
         runningThread = new Thread(this,"Server");
         runningThread.start();
     }
@@ -46,13 +46,10 @@ public class Server implements Runnable{
             }catch(IOException e) {
                 e.printStackTrace();
             }
-
         }
 
         this.threadPool.shutdown();
         System.out.println("Server Stopped!");
-
-
 
     }
 
@@ -78,24 +75,5 @@ public class Server implements Runnable{
         }
     }
 
-    // get stream to send and recieve data
-/*
-    private void setupStreams() throws IOException{
-        output = new ObjectOutputStream(connection.getOutputStream());
-        output.flush(); //only we can flush their crap, we can't flush our own shit
-        input = new ObjectInputStream(connection.getInputStream());
-        System.out.println("Streams now setup! \n");
-    }
-    //initial message exchange
-    private void auth() throws IOException{
-        String message = "You are now connected!";
-        try {
-            message = (String)input.readObject();
-            System.out.println(message);
-        }catch(ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-*/
 
 }

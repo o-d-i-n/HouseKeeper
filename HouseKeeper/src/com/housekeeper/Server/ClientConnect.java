@@ -1,5 +1,7 @@
 package com.housekeeper.Server;
 
+import com.housekeeper.Packet.Packet;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -28,7 +30,7 @@ public class ClientConnect implements Runnable{
                 auth();
             }
         }catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Client disconnected !");
         }
     }
 
@@ -43,10 +45,22 @@ public class ClientConnect implements Runnable{
     private void auth() throws IOException{
         String message = "You are now connected!";
         try {
-            message = (String)input.readObject();
+            Packet student = (Packet)input.readObject();
+            displayStudentInfo(student);
             System.out.println(message);
         }catch(ClassNotFoundException e) {
-            e.printStackTrace();
+           System.out.println("Client disconnected !");
+        }
+    }
+
+    private void displayStudentInfo(Packet student) {
+
+        if(student.type == Packet.Type.STUDENT_INFO) {
+
+            System.out.println("Name: " + student.name);
+            System.out.println("Enter your Roll Number: " + student.roll_number);
+            System.out.println("Enter your Section: " + student.section);
+            System.out.println("Enter your Percentage: " + student.percentage);
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.housekeeper.Client;
 
+import com.housekeeper.Packet.Packet;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,18 +23,15 @@ public class Client {
     public Client() {
         inputLine = new Scanner(System.in);
         try {
+
             connectToServer();
             setupStreams();
-
-            message = inputLine.nextLine();
-            auth(message);
-
-
+            auth();
 
         }catch(EOFException e) {
-            System.out.println("Client ended connection");
+            e.printStackTrace();
         }catch(IOException f) {
-            f.printStackTrace();
+            System.out.println("Server not accepting connection.Timeout.Please Try Again");
         }
     }
 
@@ -51,18 +50,27 @@ public class Client {
 
     }
 
-    private void auth(String message) {
+    private void auth() {
         try {
-
-            while(true) {
-                output.writeObject(message);
-                message = inputLine.nextLine();
-            }
-
-
+            output.writeObject(getStudentInfo());
         }catch(IOException e) {
             e.printStackTrace();
         }
     }
 
+    public Packet getStudentInfo() {
+        System.out.println("Enter your Name:");
+        String name = inputLine.nextLine();
+
+        System.out.println("Enter your Roll Number:");
+        String roll_number = inputLine.nextLine();
+        System.out.println("Enter your Section:");
+        String section = inputLine.nextLine();
+        System.out.println("Enter your Percentage:");
+        int percentage = inputLine.nextInt();
+
+        Packet student = new Packet(Packet.Type.STUDENT_INFO,name,roll_number,section,percentage);
+
+        return student;
+    }
 }
