@@ -7,6 +7,8 @@ import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Lenovo on 1/16/2016.
@@ -15,11 +17,9 @@ public class Server implements Runnable{
 
     private int port;
     private ServerSocket server;
-    private Socket connection;
-    private ObjectOutputStream output;
-    private ObjectInputStream input;
-    private Thread run;
-
+    private Socket clientSocket;
+    private Thread runningThread = null;
+    private ExecutorService threadPool = Executors.newFixedThreadPool(10); // allows for 10 thread connections;
     public boolean running = false;
 
     public Server(int port) {
@@ -30,25 +30,31 @@ public class Server implements Runnable{
             e.printStackTrace();
             return;
         }
+        running = true;
 
-        run = new Thread(this,"Server");
-        run.start();
+        runningThread = new Thread(this,"Server");
+        runningThread.start();
     }
 
     public void run() {
-        running = true;
-        System.out.println("Server started on port: " + port);
-        try {
-            while (running) {
-                //wait for connection
-                waitForConnection();
-                setupStreams(); // the output and input stream
-                auth(); //auth
-                // then begin transfer of data
-            }
-        }catch(IOException e) {
-            e.printStackTrace();
+
+        synchronized (this) {
+            this.runningThread = Thread.currentThread();
         }
+
+        while(running) {
+            try{
+                waitForConnection();
+            }catch(IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        this.threadPool.shutdown();
+        System.out.println("Server Stopped!");
+
+
 
     }
 
@@ -56,13 +62,26 @@ public class Server implements Runnable{
 
     private void waitForConnection() throws IOException {
         System.out.println("Waiting for someone to connect... \n");
-        connection = server.accept();
-        System.out.println("Now connected to..."+connection.getInetAddress().getHostName()+"\n");
+        clientSocket = server.accept();
+        System.out.println("Now connected to..."+clientSocket.getInetAddress().getHostName()+"\n");
+        this.threadPool.execute(new Client(clientSocket,"Thread Pooled Server"));
+    }
 
+    private synchronized boolean isStopped() {
+        return this.running;
+    }
+
+    public synchronized void stop(){
+        this.running = true;
+        try {
+            this.server.close();
+        } catch (IOException e) {
+            throw new RuntimeException("Error closing server", e);
+        }
     }
 
     // get stream to send and recieve data
-
+/*
     private void setupStreams() throws IOException{
         output = new ObjectOutputStream(connection.getOutputStream());
         output.flush(); //only we can flush their crap, we can't flush our own shit
@@ -83,6 +102,6 @@ public class Server implements Runnable{
         }
     }
 
-
+*/
 
 }
