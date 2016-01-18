@@ -47,10 +47,14 @@ public class ClientConnect implements Runnable{
         try {
             Packet student = (Packet)input.readObject();
             displayStudentInfo(student);
-            System.out.println(message);
+            sendtoClient("You just got responzedd ,bitch");
         }catch(ClassNotFoundException e) {
            System.out.println("Client disconnected !");
         }
+    }
+
+    private void sendtoClient(String message) throws IOException {
+        output.writeObject(message);
     }
 
     private void displayStudentInfo(Packet student) {

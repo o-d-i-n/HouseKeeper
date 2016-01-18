@@ -38,7 +38,7 @@ public class Client {
 
     public void connectToServer() throws IOException{
         System.out.println("Attempting to connect..");
-        connection = new Socket("192.168.1.111",9000);
+        connection = new Socket("169.254.186.2",9000);
         System.out.println("Connected!!");
     }
 
@@ -53,7 +53,11 @@ public class Client {
     private void auth() {
         try {
             output.writeObject(getStudentInfo());
+            message = (String)input.readObject();
+            System.out.println(message);
         }catch(IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
