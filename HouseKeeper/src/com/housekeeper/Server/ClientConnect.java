@@ -76,13 +76,19 @@ public class ClientConnect implements Runnable{
 
         } else if(student.type == Packet.Type.STUDENT_REGISTER) {
 
-            //StudentRegister registerAttempt = (StudentRegister)student;
-            /*if(server.getPassword(registerAttempt.roll_number) == "Nope") {
-                server.storePassword(registerAttempt.roll_number,registerAttempt.password);
+            StudentRegister registerAttempt = (StudentRegister)student;
+            System.out.println(server.getPassword("289/COE/13"));
+
+
+           if(true) {
+                //server.storePassword(registerAttempt.roll_number,registerAttempt.password);*/
+                return true;
             } else {
+
                 return false;
-            }*/
-            return true;
+            }
+
+
 
         }
 

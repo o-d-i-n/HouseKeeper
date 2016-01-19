@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 public class Server implements Runnable{
 
     private int port;
-    private HashMap<String,String> Passwords = new HashMap<String,String>(0);
+    public HashMap<String,String> Passwords;
     private ServerSocket server;
     private Socket clientSocket;
     private Thread runningThread = null;
@@ -24,6 +24,7 @@ public class Server implements Runnable{
 
     public Server(int port) {
         this.port = port;
+        Passwords = new HashMap();
         try {
             server = new ServerSocket(port,100);
         }catch(IOException e) {
@@ -69,7 +70,7 @@ public class Server implements Runnable{
     }
 
     public synchronized void stop(){
-        this.running = true;
+        this.running = false;
         try {
             this.server.close();
         } catch (IOException e) {
@@ -78,7 +79,8 @@ public class Server implements Runnable{
     }
 
     public String getPassword(String roll_number) {
-        if(!Passwords.get(roll_number).isEmpty()) {
+
+        if(Passwords.get(roll_number) != null) {
             return Passwords.get(roll_number);
         }
         else
@@ -86,6 +88,7 @@ public class Server implements Runnable{
 
     }
     public void storePassword(String roll_number,String password) {
+
         Passwords.put(roll_number,password);
     }
 
