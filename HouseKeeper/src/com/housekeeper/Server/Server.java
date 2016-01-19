@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -14,6 +15,7 @@ import java.util.concurrent.Executors;
 public class Server implements Runnable{
 
     private int port;
+    private HashMap<String,String> Passwords = new HashMap<String,String>(0);
     private ServerSocket server;
     private Socket clientSocket;
     private Thread runningThread = null;
@@ -73,6 +75,18 @@ public class Server implements Runnable{
         } catch (IOException e) {
             throw new RuntimeException("Error closing server", e);
         }
+    }
+
+    public String getPassword(String roll_number) {
+        if(!Passwords.get(roll_number).isEmpty()) {
+            return Passwords.get(roll_number);
+        }
+        else
+            return "Nope";
+
+    }
+    public void storePassword(String roll_number,String password) {
+        Passwords.put(roll_number,password);
     }
 
 

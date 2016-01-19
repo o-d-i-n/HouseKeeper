@@ -5,24 +5,23 @@ import java.io.Serializable;
 /**
  * Created by Lenovo on 1/17/2016.
  */
-public class Packet implements Serializable {
+public abstract class Packet implements Serializable {
 
-    public enum Type{
-        STUDENT_INFO
+    protected Packet() {
     }
 
+    public enum Type{
+        STUDENT_INFO,
+        STUDENT_LOGIN,
+        STUDENT_REGISTER
+    }
+    public String auth_code;
     public String roll_number;
-    public String section;
-    public String name;
-    public int percentage;
+    public String message;
     public Type type;
 
-    public Packet(Type type,String name,String roll_number,String section,int percentage) {
-        this.name = name;
-        this.roll_number = roll_number;
-        this.section = section;
-        this.percentage = percentage;
-        this.type = type;
+    public Packet(String auth_code) {
+        this.auth_code = auth_code;
     }
 
 }

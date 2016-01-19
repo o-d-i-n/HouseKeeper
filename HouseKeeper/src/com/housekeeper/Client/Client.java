@@ -37,8 +37,9 @@ public class Client {
 
 
     public void connectToServer() throws IOException{
+
         System.out.println("Attempting to connect..");
-        connection = new Socket("169.254.186.2",9000);
+        connection = new Socket("172.20.10.2",9000);
         System.out.println("Connected!!");
     }
 
@@ -52,7 +53,7 @@ public class Client {
 
     private void auth() {
         try {
-            output.writeObject(getStudentInfo());
+            //output.writeObject(getStudentInfo());
             message = (String)input.readObject();
             System.out.println(message);
         }catch(IOException e) {
@@ -62,7 +63,7 @@ public class Client {
         }
     }
 
-    public Packet getStudentInfo() {
+    public void getStudentInfo() {
         System.out.println("Enter your Name:");
         String name = inputLine.nextLine();
 
@@ -73,8 +74,8 @@ public class Client {
         System.out.println("Enter your Percentage:");
         int percentage = inputLine.nextInt();
 
-        Packet student = new Packet(Packet.Type.STUDENT_INFO,name,roll_number,section,percentage);
+        //Packet student = new Packet(Packet.Type.STUDENT_INFO,name,roll_number,section,percentage);
 
-        return student;
+        //return student;
     }
 }

@@ -1,6 +1,9 @@
 package com.housekeeper.Server;
 
 import com.housekeeper.Packet.Packet;
+import com.housekeeper.Packet.client.StudentLogin;
+import com.housekeeper.Packet.client.StudentRegister;
+import com.housekeeper.Packet.server.ClientPacket;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,6 +19,7 @@ public class ClientConnect implements Runnable{
     protected String serverText;
     private ObjectOutputStream output;
     private ObjectInputStream input;
+    public Server server;
 
     public ClientConnect(Socket clientSocket,String serverText) {
         this.clientSocket = clientSocket;
@@ -27,7 +31,7 @@ public class ClientConnect implements Runnable{
         try {
             setupStreams();
             while(true) {
-                auth();
+                connection();
             }
         }catch (IOException e) {
             System.out.println("Client disconnected !");
@@ -42,29 +46,54 @@ public class ClientConnect implements Runnable{
 
     }
 
-    private void auth() throws IOException{
+    private void connection() throws IOException{
         String message = "You are now connected!";
         try {
             Packet student = (Packet)input.readObject();
-            displayStudentInfo(student);
-            sendtoClient("You just got responzedd ,bitch");
+            if(auth(student)) { // all communication happens from here
+                sendToClient("Your request was accepted !");
+            } else {
+                sendToClient("You screwed up !");
+            }
         }catch(ClassNotFoundException e) {
            System.out.println("Client disconnected !");
         }
     }
 
-    private void sendtoClient(String message) throws IOException {
-        output.writeObject(message);
-    }
-
-    private void displayStudentInfo(Packet student) {
-
+    private boolean auth(Packet student) throws IOException {
         if(student.type == Packet.Type.STUDENT_INFO) {
 
-            System.out.println("Name: " + student.name);
-            System.out.println("Enter your Roll Number: " + student.roll_number);
-            System.out.println("Enter your Section: " + student.section);
-            System.out.println("Enter your Percentage: " + student.percentage);
+        } else if(student.type == Packet.Type.STUDENT_LOGIN){
+
+            StudentLogin loginAttempt = (StudentLogin)student;
+            String temp = loginAttempt.ifValid(server.getPassword(loginAttempt.roll_number));
+            if(temp != "Nope") {
+                Packet Auth = new ClientPacket(temp,"Your auth key,use it for all communications from now on.");
+                sendAuthKey(Auth);
+            } else {
+                return false;
+            }
+
+        } else if(student.type == Packet.Type.STUDENT_REGISTER) {
+
+            StudentRegister registerAttempt = (StudentRegister)student;
+            if(server.getPassword(registerAttempt.roll_number) == "Nope") {
+                server.storePassword(registerAttempt.roll_number,registerAttempt.password);
+            } else {
+                return false;
+            }
+
         }
+
+        return false;
     }
+
+    private void sendToClient(String message) throws IOException {
+        output.writeObject(message);
+    }
+    private void sendAuthKey(Packet ClientPacket) throws IOException {
+        output.writeObject(ClientPacket);
+    }
+
+
 }
