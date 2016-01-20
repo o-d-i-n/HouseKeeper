@@ -52,10 +52,9 @@ public class ClientConnect implements Runnable{
         try {
             Packet student = (Packet)input.readObject();
             if(auth(student)) { // all communication happens from here
-                sendToClient(new ClientPacket("Congratulations,you're registered.You should login to access your account"));
 
             } else {
-                sendToClient(new ClientPacket("Sorry,this roll_number is already in use"));
+                sendToClient(new ClientPacket("Sorry,something went wrong.Please check your password,roll_number or/and API code"));
             }
         }catch(ClassNotFoundException e) {
            System.out.println("Client disconnected !");
@@ -70,8 +69,10 @@ public class ClientConnect implements Runnable{
             StudentLogin loginAttempt = (StudentLogin)student;
             String temp = loginAttempt.ifValid(server.getPassword(loginAttempt.roll_number));
             if(temp != "Nope") {
-                Packet Auth = new ClientPacket(temp,"Your auth key,use it for all communications from now on.");
+                Packet Auth = new ClientPacket(temp,"You have Logged In ! Store Your auth key,use it for all communications from now on.");
                 sendAuthKey(Auth);
+                System.out.println("Roll Number : " + loginAttempt.roll_number + " has logged in!");
+                return true;
             } else {
                 return false;
             }
@@ -82,7 +83,8 @@ public class ClientConnect implements Runnable{
 
            if(server.storePassword(registerAttempt.roll_number,registerAttempt.password)) {
                 server.storePassword(registerAttempt.roll_number,registerAttempt.password);
-                System.out.println("Roll Number : " + registerAttempt.roll_number + "is registered");
+                System.out.println("Roll Number : " + registerAttempt.roll_number + " is registered");
+                sendToClient(new ClientPacket("Congratulations,you're registered.You should login to access your account"));
                 return true;
             } else {
 

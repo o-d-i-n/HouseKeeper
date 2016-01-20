@@ -1,6 +1,7 @@
 package com.housekeeper.Client;
 
 import com.housekeeper.Packet.Packet;
+import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
 import com.housekeeper.Packet.server.ClientPacket;
 
@@ -23,6 +24,7 @@ public class Client {
     public Scanner inputLine;
     public boolean running;
     public int option;
+    public String auth_code;
 
     public Client() {
         inputLine = new Scanner(System.in);
@@ -66,18 +68,31 @@ public class Client {
             if(option == 1) {
                 output.writeObject(sendRegistration());
             }else if(option == 2) {
-
+                output.writeObject(sendLoginRequest());
             }else if(option == 3) {
 
             }
 
             ClientPacket serverResponse = (ClientPacket)input.readObject();
-            System.out.println(serverResponse.message);
+            dealWith(serverResponse);
         }catch(IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private void dealWith(ClientPacket serverResponse) {
+        System.out.println(serverResponse.message);
+        if(serverResponse.auth_code != null) {
+            this.auth_code = serverResponse.auth_code;
+            System.out.println("Your API key is : " + auth_code);
+        }
+    }
+
+    private StudentLogin sendLoginRequest() {
+        StudentLogin loginAttempt = new StudentLogin("289/COE/13","007isme");
+        return loginAttempt;
     }
 
     private StudentRegister sendRegistration() {
