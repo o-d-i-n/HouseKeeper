@@ -21,9 +21,10 @@ public class ClientConnect implements Runnable{
     private ObjectInputStream input;
     public Server server;
 
-    public ClientConnect(Socket clientSocket,String serverText) {
+    public ClientConnect(Socket clientSocket,String serverText,Server server) {
         this.clientSocket = clientSocket;
         this.serverText = serverText;
+        this.server = server;
     }
 
     @Override
@@ -46,14 +47,15 @@ public class ClientConnect implements Runnable{
 
     }
 
-    private void connection() throws IOException{
+    private void connection() throws IOException {
         String message = "You are now connected!";
         try {
             Packet student = (Packet)input.readObject();
             if(auth(student)) { // all communication happens from here
-                sendToClient("Your request was accepted !");
+                sendToClient(new ClientPacket("Congratulations,you're registered.You should login to access your account"));
+
             } else {
-                sendToClient("You screwed up !");
+                sendToClient(new ClientPacket("Sorry,this roll_number is already in use"));
             }
         }catch(ClassNotFoundException e) {
            System.out.println("Client disconnected !");
@@ -77,11 +79,10 @@ public class ClientConnect implements Runnable{
         } else if(student.type == Packet.Type.STUDENT_REGISTER) {
 
             StudentRegister registerAttempt = (StudentRegister)student;
-            System.out.println(server.getPassword("289/COE/13"));
 
-
-           if(true) {
-                //server.storePassword(registerAttempt.roll_number,registerAttempt.password);*/
+           if(server.storePassword(registerAttempt.roll_number,registerAttempt.password)) {
+                server.storePassword(registerAttempt.roll_number,registerAttempt.password);
+                System.out.println("Roll Number : " + registerAttempt.roll_number + "is registered");
                 return true;
             } else {
 
@@ -95,7 +96,7 @@ public class ClientConnect implements Runnable{
         return false;
     }
 
-    private void sendToClient(String message) throws IOException {
+    private void sendToClient(ClientPacket message) throws IOException {
         output.writeObject(message);
     }
     private void sendAuthKey(Packet ClientPacket) throws IOException {

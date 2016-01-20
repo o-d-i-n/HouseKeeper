@@ -7,6 +7,10 @@ import com.housekeeper.Packet.Packet;
  */
 public class ClientPacket extends Packet {
 
+    public ClientPacket(String message) {
+        this.message = message;
+    }
+
     public ClientPacket(String auth_code,String message) {
         this.auth_code = auth_code;
         this.message = message;

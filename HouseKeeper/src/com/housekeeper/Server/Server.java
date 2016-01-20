@@ -62,7 +62,7 @@ public class Server implements Runnable{
         System.out.println("Waiting for someone to connect... \n");
         clientSocket = server.accept();
         System.out.println("Now connected to..."+clientSocket.getInetAddress().getHostName()+"\n");
-        this.threadPool.execute(new ClientConnect(clientSocket,"Thread Pooled Server"));
+        this.threadPool.execute(new ClientConnect(clientSocket,"Thread Pooled Server",this));
     }
 
     private synchronized boolean isStopped() {
@@ -87,9 +87,14 @@ public class Server implements Runnable{
             return "Nope";
 
     }
-    public void storePassword(String roll_number,String password) {
-
-        Passwords.put(roll_number,password);
+    public boolean storePassword(String roll_number,String password) {
+        if(Passwords.get(roll_number) == null)
+        {
+            Passwords.put(roll_number,password);
+            return true;
+        }
+        else
+            return false;
     }
 
 
