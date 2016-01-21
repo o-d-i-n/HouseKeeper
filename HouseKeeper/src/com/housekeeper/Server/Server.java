@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,6 +17,7 @@ public class Server implements Runnable{
 
     private int port;
     public HashMap<String,String> Passwords;
+    public HashMap<String,String> API_KEYS;
     private ServerSocket server;
     private Socket clientSocket;
     private Thread runningThread = null;
@@ -25,6 +27,7 @@ public class Server implements Runnable{
     public Server(int port) {
         this.port = port;
         Passwords = new HashMap();
+        API_KEYS = new HashMap();
         try {
             server = new ServerSocket(port,100);
         }catch(IOException e) {
@@ -87,13 +90,26 @@ public class Server implements Runnable{
             return "Nope";
     }
     public boolean storePassword(String roll_number,String password) {
-        if(Passwords.get(roll_number) == null)
-        {
+        if(Passwords.get(roll_number) == null) {
             Passwords.put(roll_number,password);
             return true;
-        }
-        else
+        } else
             return false;
+    }
+
+
+    public void storeKey(String key,String roll_number) {
+
+        API_KEYS.put(key,roll_number);
+    }
+    public boolean checkKey(String key,String roll_number) {
+
+        if(Objects.equals(API_KEYS.get(key),roll_number)) {
+            return true;
+        } else
+            return false;
+
+
     }
 
 

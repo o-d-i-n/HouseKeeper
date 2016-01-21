@@ -1,6 +1,7 @@
 package com.housekeeper.Client;
 
 import com.housekeeper.Packet.Packet;
+import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
 import com.housekeeper.Packet.server.ClientPacket;
@@ -48,7 +49,7 @@ public class Client {
     public void connectToServer() throws IOException{
 
         System.out.println("Attempting to connect..");
-        connection = new Socket("192.168.0.102",9000);
+        connection = new Socket("192.168.0.110",9000);
         System.out.println("Connected!!");
     }
 
@@ -70,7 +71,7 @@ public class Client {
             }else if(option == 2) {
                 output.writeObject(sendLoginRequest());
             }else if(option == 3) {
-
+                output.writeObject(sendStudentInfo());
             }
 
             ClientPacket serverResponse = (ClientPacket)input.readObject();
@@ -115,17 +116,22 @@ public class Client {
         option = inputLine.nextInt();
     }
 
-    public void getStudentInfo() {
-        System.out.println("Enter your Name:");
+    public StudentInfo sendStudentInfo() {
+
+       /* System.out.println("Enter your Name:");
         String name = inputLine.nextLine();
 
         System.out.println("Enter your Roll Number:");
         String roll_number = inputLine.nextLine();
         System.out.println("Enter your Section:");
-        String section = inputLine.nextLine();
+        int section = inputLine.nextInt();
         System.out.println("Enter your Percentage:");
         int percentage = inputLine.nextInt();
-
+        System.out.println("Enter your Branch:");
+        String branch = inputLine.nextLine();
+        */
+        StudentInfo student = new StudentInfo(Packet.Type.STUDENT_INFO,"Karan","COE",98,2,auth_code,"289/COE/13");
+        return student;
         //Packet student = new Packet(Packet.Type.STUDENT_INFO,name,roll_number,section,percentage);
 
         //return student;

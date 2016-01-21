@@ -1,6 +1,7 @@
 package com.housekeeper.Server;
 
 import com.housekeeper.Packet.Packet;
+import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
 import com.housekeeper.Packet.server.ClientPacket;
@@ -64,6 +65,13 @@ public class ClientConnect implements Runnable{
 
     private boolean auth(Packet student) throws IOException {
         if(student.type == Packet.Type.STUDENT_INFO) {
+            StudentInfo studentInfo = (StudentInfo)student;
+            if(server.checkKey(studentInfo.auth_code,studentInfo.roll_number)) {
+                displayStudentInfo(studentInfo);
+                sendToClient(new ClientPacket("Request Successful"));
+            } else {
+                return false;
+            }
 
         } else if(student.type == Packet.Type.STUDENT_LOGIN){
 
@@ -71,6 +79,7 @@ public class ClientConnect implements Runnable{
             String temp = loginAttempt.ifValid(server.getPassword(loginAttempt.roll_number));
             if(temp != "Nope") {
                 Packet Auth = new ClientPacket(temp,"You have Logged In ! Store Your auth key,use it for all communications from now on.");
+                server.storeKey(temp,loginAttempt.roll_number);
                 sendAuthKey(Auth);
                 System.out.println("Roll Number : " + loginAttempt.roll_number + " has logged in!");
                 return true;
@@ -97,6 +106,10 @@ public class ClientConnect implements Runnable{
         }
 
         return false;
+    }
+
+    private void displayStudentInfo(StudentInfo studentInfo) {
+        System.out.println("The student's name is : " + studentInfo.name);
     }
 
     private void sendToClient(ClientPacket message) throws IOException {
