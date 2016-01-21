@@ -4,13 +4,14 @@ import com.housekeeper.Packet.Packet;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.Objects;
 
 /**
  * Created by Lenovo on 1/19/2016.
  */
 public class StudentLogin extends Packet {
 
-    private String password;
+    public String password;
     private SecureRandom random = new SecureRandom();
 
     public StudentLogin(String roll_number,String password){
@@ -20,7 +21,7 @@ public class StudentLogin extends Packet {
     }
 
     public String ifValid(String correct_password){
-        if(correct_password == this.password) {
+        if(Objects.equals(correct_password,this.password)) {
             return new BigInteger(130, random).toString(32);
         }
         return "Nope";
