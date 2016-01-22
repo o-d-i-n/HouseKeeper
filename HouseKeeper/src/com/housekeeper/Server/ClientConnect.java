@@ -1,5 +1,6 @@
 package com.housekeeper.Server;
 
+import com.housekeeper.Client.Client;
 import com.housekeeper.Packet.Packet;
 import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
@@ -22,6 +23,8 @@ public class ClientConnect implements Runnable{
     private ObjectOutputStream output;
     private ObjectInputStream input;
     public Server server;
+    public String roll_number = "NA";
+    public boolean running = true;
 
     public ClientConnect(Socket clientSocket,String serverText,Server server) {
         this.clientSocket = clientSocket;
@@ -33,11 +36,32 @@ public class ClientConnect implements Runnable{
     public void run() {
         try {
             setupStreams();
-            while(true) {
+            while(running) {
                 connection();
             }
         }catch (IOException e) {
             System.out.println("Client disconnected !");
+            stop();
+        }
+    }
+
+    public synchronized void stop(){
+        this.running = false;
+        try {
+            this.clientSocket.close();
+            removeFromClient();
+        } catch (IOException e) {
+            throw new RuntimeException("Error closing Client", e);
+        }
+    }
+
+    private void removeFromClient() {
+
+        for(int i=0;i<this.server.Clients.size();i++) {
+            if(server.Clients.get(i).roll_number == roll_number) {
+                server.Clients.remove(i);
+                break;
+            }
         }
     }
 
@@ -82,6 +106,7 @@ public class ClientConnect implements Runnable{
                 server.storeKey(temp,loginAttempt.roll_number);
                 sendAuthKey(Auth);
                 System.out.println("Roll Number : " + loginAttempt.roll_number + " has logged in!");
+                roll_number = loginAttempt.roll_number;
                 return true;
             } else {
                 return false;

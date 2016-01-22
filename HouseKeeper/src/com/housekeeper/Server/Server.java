@@ -5,7 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,6 +20,7 @@ public class Server implements Runnable{
     private int port;
     public HashMap<String,String> Passwords;
     public HashMap<String,String> API_KEYS;
+    public List<ClientConnect> Clients = new ArrayList<ClientConnect>();
     private ServerSocket server;
     private Socket clientSocket;
     private Thread runningThread = null;
@@ -28,6 +31,7 @@ public class Server implements Runnable{
         this.port = port;
         Passwords = new HashMap();
         API_KEYS = new HashMap();
+
         try {
             server = new ServerSocket(port,100);
         }catch(IOException e) {
@@ -65,7 +69,14 @@ public class Server implements Runnable{
         System.out.println("Waiting for someone to connect... \n");
         clientSocket = server.accept();
         System.out.println("Now connected to..."+clientSocket.getInetAddress().getHostName()+"\n");
-        this.threadPool.execute(new ClientConnect(clientSocket,"Thread Pooled Server",this));
+        ClientConnect newClient = new ClientConnect(clientSocket,"Thread Pooled Server",this);
+        Clients.add(newClient);
+        this.threadPool.execute(newClient);
+        displayConnectedUsers();
+    }
+
+    private void displayConnectedUsers() {
+        for(int i=0;i<Clients.size();i++) System.out.println(Clients.get(i).roll_number);
     }
 
     private synchronized boolean isStopped() {
