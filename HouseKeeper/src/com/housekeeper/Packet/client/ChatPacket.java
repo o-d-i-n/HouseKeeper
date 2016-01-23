@@ -7,9 +7,12 @@ import com.housekeeper.Packet.Packet;
  */
 public class ChatPacket extends Packet {
     public String to;
+    public String from;
 
-    public ChatPacket(String to,String message) {
+    public ChatPacket(String to,String from,String message) {
         this.to = to;
+        this.from = from;
         this.message = message;
+        this.type = Type.CHAT;
     }
 }

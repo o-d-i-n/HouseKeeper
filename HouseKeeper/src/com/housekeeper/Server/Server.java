@@ -21,6 +21,7 @@ public class Server implements Runnable{
     public HashMap<String,String> Passwords;
     public HashMap<String,String> API_KEYS;
     public List<ClientConnect> Clients = new ArrayList<ClientConnect>();
+    public List<String> connectedUsers = new ArrayList<String>();
     private ServerSocket server;
     private Socket clientSocket;
     private Thread runningThread = null;

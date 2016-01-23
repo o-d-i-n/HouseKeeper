@@ -1,16 +1,20 @@
 package com.housekeeper.Client;
 
 import com.housekeeper.Packet.Packet;
+import com.housekeeper.Packet.client.ChatPacket;
 import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
 import com.housekeeper.Packet.server.ClientPacket;
+import com.housekeeper.Packet.server.ConnectedUsers;
 
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -26,6 +30,7 @@ public class Client {
     public boolean running;
     public int option;
     public String auth_code;
+    List<String> connectedUsers = new ArrayList<String>();
 
     public Client() {
         inputLine = new Scanner(System.in);
@@ -72,14 +77,42 @@ public class Client {
                 output.writeObject(sendLoginRequest());
             }else if(option == 3) {
                 output.writeObject(sendStudentInfo());
+            } else if(option == 4) {
+                displayConnectedUsers();
             }
-
-            ClientPacket serverResponse = (ClientPacket)input.readObject();
-            dealWith(serverResponse);
+            readInput((Packet)input.readObject());
         }catch(IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void displayConnectedUsers() {
+        System.out.println("The users currently connected are: ");
+
+        if(connectedUsers.isEmpty()) {
+            return;
+        }
+
+        for(int i=0;i<connectedUsers.size();i++) {
+            System.out.println(i + ". " + connectedUsers.get(i));
+        }
+    }
+
+    private void readInput(Packet p) {
+        if(p.type == Packet.Type.SERVER_RESPONSE) {
+            ClientPacket serverResponse = (ClientPacket)p;
+            dealWith(serverResponse);
+
+        } else if(p.type == Packet.Type.CHAT) {
+            ChatPacket chat = (ChatPacket) p;
+            System.out.println(chat.from + "says : " + chat.to);
+
+        } else if(p.type == Packet.Type.CONNECTED_USERS) {
+            ConnectedUsers users = (ConnectedUsers) p;
+            this.connectedUsers = users.Clients;
+
         }
     }
 

@@ -6,6 +6,7 @@ import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
 import com.housekeeper.Packet.server.ClientPacket;
+import com.housekeeper.Packet.server.ConnectedUsers;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -78,7 +79,7 @@ public class ClientConnect implements Runnable{
         try {
             Packet student = (Packet)input.readObject();
             if(auth(student)) { // all communication happens from here
-
+                sendToClient(new ConnectedUsers(server.connectedUsers));
             } else {
                 sendToClient(new ClientPacket("Sorry,something went wrong.Please check your password,roll_number or/and API code"));
             }
@@ -107,6 +108,7 @@ public class ClientConnect implements Runnable{
                 sendAuthKey(Auth);
                 System.out.println("Roll Number : " + loginAttempt.roll_number + " has logged in!");
                 roll_number = loginAttempt.roll_number;
+                server.connectedUsers.add(roll_number);
                 return true;
             } else {
                 return false;
@@ -139,7 +141,7 @@ public class ClientConnect implements Runnable{
         System.out.println("The student's name is : " + studentInfo.name);
     }
 
-    private void sendToClient(ClientPacket message) throws IOException {
+    private void sendToClient(Packet message) throws IOException {
         output.writeObject(message);
     }
     private void sendAuthKey(Packet ClientPacket) throws IOException {

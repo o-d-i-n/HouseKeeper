@@ -14,5 +14,6 @@ public class ConnectedUsers extends Packet {
 
     public ConnectedUsers(List<String> Clients) {
         Clients = this.Clients;
+        this.type = Type.CONNECTED_USERS;
     }
 }
