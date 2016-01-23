@@ -128,6 +128,8 @@ public class ClientConnect implements Runnable{
 
 
 
+        } else if(student.type == Packet.Type.CHAT) {
+
         }
 
         return false;

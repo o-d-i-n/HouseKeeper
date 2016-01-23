@@ -13,7 +13,9 @@ public abstract class Packet implements Serializable {
     public enum Type{
         STUDENT_INFO,
         STUDENT_LOGIN,
-        STUDENT_REGISTER
+        STUDENT_REGISTER,
+        CHAT,
+        SERVER_RESPONSE
     }
     public String auth_code;
     public String roll_number;

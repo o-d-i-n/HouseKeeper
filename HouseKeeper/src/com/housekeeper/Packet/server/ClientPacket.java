@@ -14,5 +14,6 @@ public class ClientPacket extends Packet {
     public ClientPacket(String auth_code,String message) {
         this.auth_code = auth_code;
         this.message = message;
+        this.type = Type.SERVER_RESPONSE;
     }
 }
