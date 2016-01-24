@@ -1,18 +1,16 @@
 package com.housekeeper.Server;
 
-import com.housekeeper.Client.Client;
 import com.housekeeper.Packet.Packet;
+import com.housekeeper.Packet.client.ConnectedUsers;
 import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
 import com.housekeeper.Packet.server.ClientPacket;
-import com.housekeeper.Packet.server.ConnectedUsers;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Objects;
 
 /**
  * Created by Lenovo on 1/17/2016.
@@ -79,7 +77,10 @@ public class ClientConnect implements Runnable{
         try {
             Packet student = (Packet)input.readObject();
             if(auth(student)) { // all communication happens from here
-                sendToClient(new ConnectedUsers(server.connectedUsers));
+                if(!server.connectedUsers.isEmpty()) {
+                    System.out.println("Hey");
+                    sendToClient(new ConnectedUsers(server.connectedUsers));
+                }
             } else {
                 sendToClient(new ClientPacket("Sorry,something went wrong.Please check your password,roll_number or/and API code"));
             }
@@ -132,6 +133,9 @@ public class ClientConnect implements Runnable{
 
         } else if(student.type == Packet.Type.CHAT) {
 
+        } else if(student.type == Packet.Type.CONNECTED_USERS) {
+            sendToClient(new ConnectedUsers(server.connectedUsers));
+            return true;
         }
 
         return false;

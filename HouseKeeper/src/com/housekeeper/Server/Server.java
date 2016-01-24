@@ -73,11 +73,10 @@ public class Server implements Runnable{
         ClientConnect newClient = new ClientConnect(clientSocket,"Thread Pooled Server",this);
         Clients.add(newClient);
         this.threadPool.execute(newClient);
-        displayConnectedUsers();
     }
 
     private void displayConnectedUsers() {
-        for(int i=0;i<Clients.size();i++) System.out.println(Clients.get(i).roll_number);
+        for(int i=0;i<connectedUsers.size();i++) System.out.println(connectedUsers.get(i));
     }
 
     private synchronized boolean isStopped() {
@@ -113,6 +112,8 @@ public class Server implements Runnable{
     public void storeKey(String key,String roll_number) {
 
         API_KEYS.put(key,roll_number);
+        connectedUsers.add(roll_number);
+        displayConnectedUsers();
     }
     public boolean checkKey(String key,String roll_number) {
 
