@@ -112,7 +112,6 @@ public class Server implements Runnable{
     public void storeKey(String key,String roll_number) {
 
         API_KEYS.put(key,roll_number);
-        connectedUsers.add(roll_number);
         displayConnectedUsers();
     }
     public boolean checkKey(String key,String roll_number) {
@@ -123,6 +122,16 @@ public class Server implements Runnable{
             return false;
 
 
+    }
+
+    public ClientConnect findClientConnection(String roll_number) {
+        for(int i=0;i<Clients.size();i++) {
+
+            if(Objects.equals(Clients.get(i).roll_number,roll_number)) {
+                return Clients.get(i);
+            }
+        }
+        return null;
     }
 
 

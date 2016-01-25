@@ -71,7 +71,7 @@ public class Client  implements Runnable{
     public void connectToServer() throws IOException{
 
         System.out.println("Attempting to connect..");
-        connection = new Socket("192.168.0.110",9000);
+        connection = new Socket("192.168.50.103",9000);
         System.out.println("Connected!!");
     }
 
@@ -103,7 +103,7 @@ public class Client  implements Runnable{
 
         } else if(p.type == Packet.Type.CHAT) {
             ChatPacket chat = (ChatPacket) p;
-            System.out.println(chat.from + "says : " + chat.to);
+            System.out.println(chat.from + "says : " + chat.message);
 
         } else if(p.type == Packet.Type.CONNECTED_USERS) {
             System.out.println("The packet type recieved is a connectedUsers");

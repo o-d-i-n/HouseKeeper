@@ -1,10 +1,7 @@
 package com.housekeeper.Server;
 
 import com.housekeeper.Packet.Packet;
-import com.housekeeper.Packet.client.ConnectedUsers;
-import com.housekeeper.Packet.client.StudentInfo;
-import com.housekeeper.Packet.client.StudentLogin;
-import com.housekeeper.Packet.client.StudentRegister;
+import com.housekeeper.Packet.client.*;
 import com.housekeeper.Packet.server.ClientPacket;
 
 import java.io.IOException;
@@ -132,6 +129,17 @@ public class ClientConnect implements Runnable{
 
 
         } else if(student.type == Packet.Type.CHAT) {
+            ChatPacket chatRequest = (ChatPacket)student;
+            System.out.println(chatRequest.from + " tells " + chatRequest.to + ",' " + chatRequest.message + " '" );
+
+            //send to specified user
+            ClientConnect client = server.findClientConnection(chatRequest.to);
+            if(client != null) {
+                client.sendToClient(chatRequest);
+            }else {
+                System.out.println("The client is returning a null value");
+            }
+
 
         } else if(student.type == Packet.Type.CONNECTED_USERS) {
             sendToClient(new ConnectedUsers(server.connectedUsers));

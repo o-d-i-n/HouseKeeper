@@ -1,6 +1,7 @@
 package com.housekeeper.Client;
 
 import com.housekeeper.Packet.Packet;
+import com.housekeeper.Packet.client.ChatPacket;
 import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
@@ -35,11 +36,23 @@ public class ServerSender implements Runnable {
                     client.output.writeObject(sendStudentInfo());
                 } else if(option == 4) {
                     displayConnectedUsers();
+                } else if(option == 5) {
+                    client.output.writeObject(sendMessage());
                 }
             } catch (IOException e) {
                 // close connections gracefully
             }
         }
+    }
+
+    private ChatPacket sendMessage() {
+        System.out.println("Enter the roll_number of the reciepient");
+        inputLine.nextLine();
+        String to = inputLine.nextLine();
+        System.out.println("Enter message: ");
+        String message = inputLine.nextLine();
+        ChatPacket chatMessage = new ChatPacket(to,client.roll_number,message);
+        return chatMessage;
     }
 
     private void cli() {
@@ -48,6 +61,7 @@ public class ServerSender implements Runnable {
         System.out.println("2. Login (You need to register to try this step out)");
         System.out.println("3. Share Your Info (You need to login before trying this step out)");
         System.out.println("4. See connected Users");
+        System.out.println("5. Send a private message ");
 
 
         option = inputLine.nextInt();
