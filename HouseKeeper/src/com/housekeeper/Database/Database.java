@@ -11,7 +11,7 @@ public class Database {
 
     // DataBase Connection Parmeters
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/karan";
+    static final String DB_URL = "jdbc:mysql://localhost/housekeeper";
 
     //  Database credentials
     static final String USER = "root";
@@ -55,6 +55,8 @@ public class Database {
     }
 
     public void sendData(String sql) throws SQLException {
+
+
 
        System.out.print(statement.executeUpdate(sql));
 

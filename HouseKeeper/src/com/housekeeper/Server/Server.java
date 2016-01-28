@@ -31,6 +31,7 @@ public class Server implements Runnable{
     private Thread runningThread = null;
     private ExecutorService threadPool = Executors.newFixedThreadPool(10); // allows for 10 thread connections;
     public boolean running = false;
+    public Database mySql;
 
     public Server(int port) {
         this.port = port;
@@ -41,9 +42,8 @@ public class Server implements Runnable{
         try {
             server = new ServerSocket(port,100);
 
-            Database mySql = new Database();
-            mySql.sendData("INSERT INTO test " + "VALUES (NULL,'Student','29')");
-            mySql.getData("SELECT id,name FROM test");
+            mySql = new Database();
+
 
         }catch(Exception e) {
             e.printStackTrace();

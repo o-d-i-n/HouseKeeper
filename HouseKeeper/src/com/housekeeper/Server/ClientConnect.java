@@ -1,5 +1,6 @@
 package com.housekeeper.Server;
 
+import com.housekeeper.Database.Statements.Insert;
 import com.housekeeper.Packet.Packet;
 import com.housekeeper.Packet.client.*;
 import com.housekeeper.Packet.server.ClientPacket;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
 
 /**
  * Created by Lenovo on 1/17/2016.
@@ -21,7 +23,7 @@ public class ClientConnect implements Runnable{
     public Server server;
     public String roll_number = "NA";
     public boolean running = true;
-
+    private Insert insert;
     public ClientConnect(Socket clientSocket,String serverText,Server server) {
         this.clientSocket = clientSocket;
         this.serverText = serverText;
@@ -32,6 +34,7 @@ public class ClientConnect implements Runnable{
     public void run() {
         try {
             setupStreams();
+            insert = new Insert(server.mySql);
             while(running) {
                 connection();
             }
@@ -80,14 +83,17 @@ public class ClientConnect implements Runnable{
             }
         }catch(ClassNotFoundException e) {
            System.out.println("Client disconnected !");
+        } catch (SQLException e) {
+            System.out.println("Something went wrong with communicating with the Database");
         }
     }
 
-    private boolean auth(Packet student) throws IOException {
+    private boolean auth(Packet student) throws IOException, SQLException {
         if(student.type == Packet.Type.STUDENT_INFO) {
             StudentInfo studentInfo = (StudentInfo)student;
             if(server.checkKey(studentInfo.auth_code,studentInfo.roll_number)) {
                 displayStudentInfo(studentInfo);
+                insert.studentInfo(studentInfo,"user");
                 sendToClient(new ClientPacket("Request Successful"));
             } else {
                 return false;
@@ -121,7 +127,6 @@ public class ClientConnect implements Runnable{
 
                server.storePassword(registerAttempt.roll_number,registerAttempt.password);
                System.out.println("Roll Number : " + registerAttempt.roll_number + " is registered");
-
                sendToClient(new ClientPacket("Congratulations,you're registered.You should login to access your account"));
 
                return true;
