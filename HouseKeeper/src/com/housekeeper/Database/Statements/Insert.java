@@ -6,6 +6,7 @@ package com.housekeeper.Database.Statements;
 
 import com.housekeeper.Database.Database;
 import com.housekeeper.Packet.client.StudentInfo;
+import com.housekeeper.Packet.client.StudentRegister;
 
 import java.sql.SQLException;
 
@@ -25,14 +26,15 @@ public class Insert {
 
 
 
-    public void studentInfo(StudentInfo studentInfo,String table) throws SQLException {
+    public void studentInfo(StudentRegister studentInfo, String table) throws SQLException {
 
-        sql = "INSERT INTO "+table+"VALUES (NULL,";
+        String sql = "INSERT INTO user (`roll_number`,`name`,`section`,`password`)" + "VALUES (";
 
         sql = sql + "'" + studentInfo.roll_number + "',";
-        sql = sql + "'" + studentInfo.name + "',";
-        sql = sql + "'" + studentInfo.section + "')";
-
+        sql = sql + "'" + "N/A" + "',";
+        sql = sql + "'" + "0" + "',";
+        sql = sql + "'" + studentInfo.password + "')";
+        System.out.println(sql);
         connection.sendData(sql);
 
     }
