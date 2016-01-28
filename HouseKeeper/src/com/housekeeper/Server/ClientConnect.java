@@ -1,6 +1,7 @@
 package com.housekeeper.Server;
 
 import com.housekeeper.Database.Statements.Insert;
+import com.housekeeper.Database.Statements.Update;
 import com.housekeeper.Packet.Packet;
 import com.housekeeper.Packet.client.*;
 import com.housekeeper.Packet.server.ClientPacket;
@@ -24,6 +25,7 @@ public class ClientConnect implements Runnable{
     public String roll_number = "NA";
     public boolean running = true;
     private Insert insert;
+    private Update update;
     public ClientConnect(Socket clientSocket,String serverText,Server server) {
         this.clientSocket = clientSocket;
         this.serverText = serverText;
@@ -35,6 +37,7 @@ public class ClientConnect implements Runnable{
         try {
             setupStreams();
             insert = new Insert(server.mySql);
+            update = new Update(server.mySql);
             while(running) {
                 connection();
             }
@@ -91,13 +94,12 @@ public class ClientConnect implements Runnable{
     private boolean auth(Packet student) throws IOException, SQLException {
         if(student.type == Packet.Type.STUDENT_INFO) {
             StudentInfo studentInfo = (StudentInfo)student;
-            if(server.checkKey(studentInfo.auth_code,studentInfo.roll_number)) {
-                displayStudentInfo(studentInfo);
-                //insert.studentInfo(studentInfo,"user");
-                sendToClient(new ClientPacket("Request Successful"));
-            } else {
-                return false;
-            }
+
+            displayStudentInfo(studentInfo);
+            update.studentInfo(studentInfo,"user");
+            //insert.studentInfo(studentInfo,"user");
+            sendToClient(new ClientPacket("Request Successful"));
+
 
         } else if(student.type == Packet.Type.STUDENT_LOGIN){
 

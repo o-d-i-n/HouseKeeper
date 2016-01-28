@@ -85,7 +85,7 @@ public class ServerSender implements Runnable {
         System.out.println("Enter Roll Number");
         inputLine.nextLine();
         String roll_number = inputLine.nextLine();
-
+        client.roll_number = roll_number;
         System.out.println("Enter Password");
         String password = inputLine.nextLine();
 

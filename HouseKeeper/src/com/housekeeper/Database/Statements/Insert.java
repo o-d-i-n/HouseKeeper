@@ -28,7 +28,7 @@ public class Insert {
 
     public void studentInfo(StudentRegister studentInfo, String table) throws SQLException {
 
-        String sql = "INSERT INTO user (`roll_number`,`name`,`section`,`password`)" + "VALUES (";
+        String sql = "INSERT INTO "+table+" (`roll_number`,`name`,`section`,`password`)" + "VALUES (";
 
         sql = sql + "'" + studentInfo.roll_number + "',";
         sql = sql + "'" + "N/A" + "',";
