@@ -19,16 +19,16 @@ public class Database {
 
 
     private static Connection connection;
-    private Statement statement = null;
-    private ResultSet resultSet = null;
+    private Statement statement;
+    private ResultSet resultSet;
 
-    void Database() {
+    public Database(){
+
         try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(DB_URL,USER,PASS);
+            Class.forName(JDBC_DRIVER);
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = connection.createStatement();
-
+            System.out.println("Connection Successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,7 +36,9 @@ public class Database {
 
     }
 
-    void getData(String sql) throws SQLException {
+    public void getData(String sql) throws SQLException {
+
+
 
         resultSet = statement.executeQuery(sql);
 
@@ -52,9 +54,9 @@ public class Database {
 
     }
 
-    void sendData(String sql) throws SQLException {
+    public void sendData(String sql) throws SQLException {
 
-        resultSet = statement.executeQuery(sql);
+       System.out.print(statement.executeUpdate(sql));
 
 
     }

@@ -1,5 +1,9 @@
 package com.housekeeper.Server;
 
+
+
+import com.housekeeper.Database.Database;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -33,9 +37,15 @@ public class Server implements Runnable{
         Passwords = new HashMap();
         API_KEYS = new HashMap();
 
+
         try {
             server = new ServerSocket(port,100);
-        }catch(IOException e) {
+
+            Database mySql = new Database();
+            mySql.sendData("INSERT INTO test " + "VALUES (NULL,'Student','29')");
+            mySql.getData("SELECT id,name FROM test");
+
+        }catch(Exception e) {
             e.printStackTrace();
             return;
         }

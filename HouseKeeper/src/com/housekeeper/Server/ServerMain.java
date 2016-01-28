@@ -1,5 +1,9 @@
 package com.housekeeper.Server;
 
+import com.housekeeper.Database.Database;
+
+import java.sql.SQLException;
+
 /**
  * Created by Lenovo on 1/17/2016.
  */
@@ -13,10 +17,12 @@ public class ServerMain {
         server = new Server(port);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         int port;
         port = 9000;
         new ServerMain(port);
+
+
     }
 
 }
