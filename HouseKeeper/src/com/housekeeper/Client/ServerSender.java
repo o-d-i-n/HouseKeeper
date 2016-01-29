@@ -23,6 +23,19 @@ public class ServerSender implements Runnable {
         inputLine = new Scanner(System.in);
     }
 
+    private void cli() {
+
+        System.out.println("Welcome to The HouseKeeper.You have the following options:");
+        System.out.println("1. Register");
+        System.out.println("2. Login (You need to register to try this step out)");
+        System.out.println("3. Share Your Info (You need to login before trying this step out)");
+        System.out.println("4. See connected Users");
+        System.out.println("5. Send a private message ");
+
+
+        option = inputLine.nextInt();
+    }
+
     @Override
     public void run() {
         while(client.running) {
@@ -53,18 +66,6 @@ public class ServerSender implements Runnable {
         String message = inputLine.nextLine();
         ChatPacket chatMessage = new ChatPacket(to,client.roll_number,message);
         return chatMessage;
-    }
-
-    private void cli() {
-        System.out.println("Welcome to The HouseKeeper.You have the following options:");
-        System.out.println("1. Register");
-        System.out.println("2. Login (You need to register to try this step out)");
-        System.out.println("3. Share Your Info (You need to login before trying this step out)");
-        System.out.println("4. See connected Users");
-        System.out.println("5. Send a private message ");
-
-
-        option = inputLine.nextInt();
     }
 
     private StudentLogin sendLoginRequest() {

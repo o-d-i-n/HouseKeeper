@@ -18,9 +18,11 @@ public class Database {
     static final String PASS = "";
 
 
-    private static Connection connection;
-    private Statement statement;
-    private ResultSet resultSet;
+    public static Connection connection;
+    protected Statement statement;
+    public ResultSet resultSet;
+
+    protected String sql;
 
     public Database(){
 
@@ -36,27 +38,19 @@ public class Database {
 
     }
 
-    public void getData(String sql) throws SQLException {
-
-
+    public boolean getData(String sql) throws SQLException {
 
         resultSet = statement.executeQuery(sql);
 
-        while(resultSet.next()) {
-
-            int id = resultSet.getInt("id");
-            String name = resultSet.getString("name");
-
-            System.out.print("ID: " + id);
-            System.out.println(", Last: " + name);
-
+        if(resultSet != null) {
+            return false;
         }
+
+        return true;
 
     }
 
     public void sendData(String sql) throws SQLException {
-
-
 
        System.out.print(statement.executeUpdate(sql));
 

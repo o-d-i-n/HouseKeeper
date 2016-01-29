@@ -1,6 +1,7 @@
 package com.housekeeper.Server;
 
 import com.housekeeper.Database.Statements.Insert;
+import com.housekeeper.Database.Statements.Select;
 import com.housekeeper.Database.Statements.Update;
 import com.housekeeper.Packet.Packet;
 import com.housekeeper.Packet.client.*;
@@ -9,8 +10,11 @@ import com.housekeeper.Packet.server.ClientPacket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.math.BigInteger;
 import java.net.Socket;
+import java.security.SecureRandom;
 import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  * Created by Lenovo on 1/17/2016.
@@ -26,6 +30,11 @@ public class ClientConnect implements Runnable{
     public boolean running = true;
     private Insert insert;
     private Update update;
+    private Select select;
+    private String auth_code;
+    private SecureRandom random = new SecureRandom();
+
+
     public ClientConnect(Socket clientSocket,String serverText,Server server) {
         this.clientSocket = clientSocket;
         this.serverText = serverText;
@@ -36,8 +45,11 @@ public class ClientConnect implements Runnable{
     public void run() {
         try {
             setupStreams();
+
             insert = new Insert(server.mySql);
             update = new Update(server.mySql);
+            select = new Select(server.mySql);
+
             while(running) {
                 connection();
             }
@@ -67,7 +79,7 @@ public class ClientConnect implements Runnable{
         }
     }
 
-    private void setupStreams() throws IOException{
+    private void setupStreams() throws IOException {
         output = new ObjectOutputStream(clientSocket.getOutputStream());
         output.flush(); //only we can flush their crap, we can't flush our own shit
         input = new ObjectInputStream(clientSocket.getInputStream());
@@ -78,59 +90,79 @@ public class ClientConnect implements Runnable{
     private void connection() throws IOException {
         String message = "You are now connected!";
         try {
+
             Packet student = (Packet)input.readObject();
             if(auth(student)) { // all communication happens from here
 
             } else {
+                System.out.println("Sorry attempt to auth failed");
                 sendToClient(new ClientPacket("Sorry,something went wrong.Please check your password,roll_number or/and API code"));
             }
+
         }catch(ClassNotFoundException e) {
            System.out.println("Client disconnected !");
         } catch (SQLException e) {
+
+            sendToClient(new ClientPacket("Sorry,something went wrong.Please check your password,roll_number or/and API code"));
             System.out.println("Something went wrong with communicating with the Database.This could occur if you're trying to insert duplicate information");
         }
     }
 
     private boolean auth(Packet student) throws IOException, SQLException {
+
         if(student.type == Packet.Type.STUDENT_INFO) {
+
             StudentInfo studentInfo = (StudentInfo)student;
 
-            displayStudentInfo(studentInfo);
-            update.studentInfo(studentInfo,"user");
-            //insert.studentInfo(studentInfo,"user");
-            sendToClient(new ClientPacket("Request Successful"));
+            if(Objects.equals(studentInfo.auth_code, auth_code) ) {
+
+                displayStudentInfo(studentInfo);
+                update.studentInfo(studentInfo, "user");
+                sendToClient(new ClientPacket("Request Successful"));
+
+                return true;
+            }
+
 
 
         } else if(student.type == Packet.Type.STUDENT_LOGIN){
 
             StudentLogin loginAttempt = (StudentLogin)student;
-            String temp = loginAttempt.ifValid(server.getPassword(loginAttempt.roll_number));
-            if(temp != "Nope") {
-                Packet Auth = new ClientPacket(temp,"You have Logged In ! Store Your auth key,use it for all communications from now on.");
-                server.storeKey(temp,loginAttempt.roll_number);
+
+            if(select.login(loginAttempt)) {
+                auth_code = new BigInteger(130, random).toString(32);
+                Packet Auth = new ClientPacket(auth_code,"You have Logged In ! Store Your auth key,use it for all communications from now on.");
+
+                //HouseKeeping chores
+
                 roll_number = loginAttempt.roll_number;
                 server.connectedUsers.add(roll_number);
 
-                sendAuthKey(Auth);
+                //Sending confirmation back to the client
+
+                sendToClient(Auth);
+
                 sendToClient(new ConnectedUsers(server.connectedUsers));
 
                 System.out.println("Roll Number : " + loginAttempt.roll_number + " has logged in!");
 
                 return true;
-            } else {
-                return false;
             }
 
         } else if(student.type == Packet.Type.STUDENT_REGISTER) {
 
            StudentRegister registerAttempt = (StudentRegister)student;
 
-           insert.studentInfo(registerAttempt,"user");
+           if(!select.checkIfUser(registerAttempt)) {
+               insert.studentInfo(registerAttempt, "user");
 
-           System.out.println("Roll Number : " + registerAttempt.roll_number + " is registered");
-           sendToClient(new ClientPacket("Congratulations,you're registered.You should login to access your account"));
+               System.out.println("Roll Number : " + registerAttempt.roll_number + " is registered");
+               sendToClient(new ClientPacket("Congratulations,you're registered.You should login to access your account"));
 
-           return true;
+               return true;
+           }
+
+
 
 
         } else if(student.type == Packet.Type.CHAT) {
@@ -139,12 +171,14 @@ public class ClientConnect implements Runnable{
 
             //send to specified user
             ClientConnect client = server.findClientConnection(chatRequest.to);
+
             if(client != null) {
                 client.sendToClient(chatRequest);
-            }else {
-                System.out.println("The client is returning a null value");
+                return true;
             }
 
+            System.out.println("The client is returning a null value");
+            return false;
 
         } else if(student.type == Packet.Type.CONNECTED_USERS) {
             sendToClient(new ConnectedUsers(server.connectedUsers));
@@ -154,15 +188,16 @@ public class ClientConnect implements Runnable{
         return false;
     }
 
+
+
     private void displayStudentInfo(StudentInfo studentInfo) {
         System.out.println("The student's name is : " + studentInfo.name);
     }
 
+
+
     private void sendToClient(Packet message) throws IOException {
         output.writeObject(message);
-    }
-    private void sendAuthKey(Packet ClientPacket) throws IOException {
-        output.writeObject(ClientPacket);
     }
 
 

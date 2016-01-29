@@ -5,12 +5,9 @@ package com.housekeeper.Server;
 import com.housekeeper.Database.Database;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
@@ -22,10 +19,10 @@ import java.util.concurrent.Executors;
 public class Server implements Runnable{
 
     private int port;
-    public HashMap<String,String> Passwords;
-    public HashMap<String,String> API_KEYS;
+
     public List<ClientConnect> Clients = new ArrayList<ClientConnect>();
     public List<String> connectedUsers = new ArrayList<String>();
+
     private ServerSocket server;
     private Socket clientSocket;
     private Thread runningThread = null;
@@ -35,8 +32,6 @@ public class Server implements Runnable{
 
     public Server(int port) {
         this.port = port;
-        Passwords = new HashMap();
-        API_KEYS = new HashMap();
 
 
         try {
@@ -102,37 +97,6 @@ public class Server implements Runnable{
         }
     }
 
-    public String getPassword(String roll_number) {
-
-        if(Passwords.get(roll_number) != null) {
-            return Passwords.get(roll_number);
-        }
-        else
-            return "Nope";
-    }
-    public boolean storePassword(String roll_number,String password) {
-        if(Passwords.get(roll_number) == null) {
-            Passwords.put(roll_number,password);
-            return true;
-        } else
-            return false;
-    }
-
-
-    public void storeKey(String key,String roll_number) {
-
-        API_KEYS.put(key,roll_number);
-        displayConnectedUsers();
-    }
-    public boolean checkKey(String key,String roll_number) {
-
-        if(Objects.equals(API_KEYS.get(key),roll_number)) {
-            return true;
-        } else
-            return false;
-
-
-    }
 
     public ClientConnect findClientConnection(String roll_number) {
         for(int i=0;i<Clients.size();i++) {

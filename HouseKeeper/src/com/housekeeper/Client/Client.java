@@ -71,7 +71,7 @@ public class Client  implements Runnable{
     public void connectToServer() throws IOException{
 
         System.out.println("Attempting to connect..");
-        connection = new Socket("192.168.0.100",9000);
+        connection = new Socket("192.168.1.102",9000);
         System.out.println("Connected!!");
     }
 
@@ -96,6 +96,7 @@ public class Client  implements Runnable{
 
 
     private void readInput(Packet p) {
+
         if(p.type == Packet.Type.SERVER_RESPONSE) {
             System.out.println("The packet type recieved is a normal Server Response");
             ClientPacket serverResponse = (ClientPacket)p;

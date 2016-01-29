@@ -12,7 +12,7 @@ import java.util.Objects;
 public class StudentLogin extends Packet {
 
     public String password;
-    private SecureRandom random = new SecureRandom();
+
 
     public StudentLogin(String roll_number,String password){
         this.type = Type.STUDENT_LOGIN;
@@ -20,10 +20,5 @@ public class StudentLogin extends Packet {
         this.password = password;
     }
 
-    public String ifValid(String correct_password){
-        if(Objects.equals(correct_password,this.password)) {
-            return new BigInteger(130, random).toString(32);
-        }
-        return "Nope";
-    }
+
 }

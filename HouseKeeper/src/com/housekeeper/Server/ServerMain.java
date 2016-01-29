@@ -1,8 +1,5 @@
 package com.housekeeper.Server;
 
-import com.housekeeper.Database.Database;
-
-import java.sql.SQLException;
 
 /**
  * Created by Lenovo on 1/17/2016.

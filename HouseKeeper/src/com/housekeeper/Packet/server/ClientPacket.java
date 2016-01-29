@@ -9,6 +9,7 @@ public class ClientPacket extends Packet {
 
     public ClientPacket(String message) {
         this.message = message;
+        this.type = Type.SERVER_RESPONSE;
     }
 
     public ClientPacket(String auth_code,String message) {
