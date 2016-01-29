@@ -69,8 +69,6 @@ public class Server implements Runnable{
 
     }
 
-    //wait for a connection, then display connection information
-
     private void waitForConnection() throws IOException {
         System.out.println("Waiting for someone to connect... \n");
         clientSocket = server.accept();
@@ -78,10 +76,6 @@ public class Server implements Runnable{
         ClientConnect newClient = new ClientConnect(clientSocket,"Thread Pooled Server",this);
         Clients.add(newClient);
         this.threadPool.execute(newClient);
-    }
-
-    private void displayConnectedUsers() {
-        for(int i=0;i<connectedUsers.size();i++) System.out.println(connectedUsers.get(i));
     }
 
     private synchronized boolean isStopped() {
@@ -96,7 +90,6 @@ public class Server implements Runnable{
             throw new RuntimeException("Error closing server", e);
         }
     }
-
 
     public ClientConnect findClientConnection(String roll_number) {
         for(int i=0;i<Clients.size();i++) {

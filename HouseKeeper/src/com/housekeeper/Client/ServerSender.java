@@ -17,6 +17,7 @@ public class ServerSender implements Runnable {
     public Client client;
     public Integer option;
     public Scanner inputLine;
+
     public ServerSender(Client client) {
 
         this.client = client;
@@ -36,7 +37,6 @@ public class ServerSender implements Runnable {
         option = inputLine.nextInt();
     }
 
-    @Override
     public void run() {
         while(client.running) {
             cli();
@@ -103,7 +103,6 @@ public class ServerSender implements Runnable {
 
         //return student;
     }
-
 
     private void displayConnectedUsers() {
         if(client.connectedUsers.isEmpty()) {

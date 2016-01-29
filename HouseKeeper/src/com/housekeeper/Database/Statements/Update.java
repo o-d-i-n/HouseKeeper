@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by Lenovo on 1/28/2016.
  */
-public class Update extends Database{
+public class Update {
 
     private Database connection;
     private String sql;

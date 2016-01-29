@@ -41,7 +41,6 @@ public class ClientConnect implements Runnable{
         this.server = server;
     }
 
-    @Override
     public void run() {
         try {
             setupStreams();
@@ -88,7 +87,7 @@ public class ClientConnect implements Runnable{
     }
 
     private void connection() throws IOException {
-        String message = "You are now connected!";
+
         try {
 
             Packet student = (Packet)input.readObject();
@@ -116,7 +115,6 @@ public class ClientConnect implements Runnable{
 
             if(Objects.equals(studentInfo.auth_code, auth_code) ) {
 
-                displayStudentInfo(studentInfo);
                 update.studentInfo(studentInfo, "user");
                 sendToClient(new ClientPacket("Request Successful"));
 
@@ -167,7 +165,7 @@ public class ClientConnect implements Runnable{
 
         } else if(student.type == Packet.Type.CHAT) {
             ChatPacket chatRequest = (ChatPacket)student;
-            System.out.println(chatRequest.from + " tells " + chatRequest.to + ",' " + chatRequest.message + " '" );
+            System.out.println(chatRequest.from + " tells " + chatRequest.to + " to, ' " + chatRequest.message + " '" );
 
             //send to specified user
             ClientConnect client = server.findClientConnection(chatRequest.to);
@@ -178,7 +176,7 @@ public class ClientConnect implements Runnable{
             }
 
             System.out.println("The client is returning a null value");
-            return false;
+
 
         } else if(student.type == Packet.Type.CONNECTED_USERS) {
             sendToClient(new ConnectedUsers(server.connectedUsers));
@@ -187,14 +185,6 @@ public class ClientConnect implements Runnable{
 
         return false;
     }
-
-
-
-    private void displayStudentInfo(StudentInfo studentInfo) {
-        System.out.println("The student's name is : " + studentInfo.name);
-    }
-
-
 
     private void sendToClient(Packet message) throws IOException {
         output.writeObject(message);

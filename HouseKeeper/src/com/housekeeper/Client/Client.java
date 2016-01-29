@@ -21,10 +21,8 @@ public class Client  implements Runnable{
     private Socket connection;
     public ObjectOutputStream output;
     public ObjectInputStream input;
-    public String message;
     public boolean running;
     public String roll_number;
-    public int option;
     public String auth_code;
     List<String> connectedUsers = new ArrayList<String>();
     Thread listeningThread = null;
@@ -47,8 +45,6 @@ public class Client  implements Runnable{
         listeningThread.start();
     }
 
-
-    @Override
     public void run() {
 
         ServerSender sender = new ServerSender(this);
@@ -66,7 +62,6 @@ public class Client  implements Runnable{
         stop();
 
     }
-
 
     public void connectToServer() throws IOException{
 
@@ -91,9 +86,6 @@ public class Client  implements Runnable{
             running = false;
         }
     }
-
-
-
 
     private void readInput(Packet p) {
 
@@ -121,7 +113,6 @@ public class Client  implements Runnable{
             System.out.println("Your API key is : " + auth_code);
         }
     }
-
 
     public synchronized void stop(){
         System.out.println("Hey");
