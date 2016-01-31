@@ -23,7 +23,7 @@ public class ClientConnect implements Runnable{
 
     protected Socket clientSocket;
     protected String serverText;
-    private ObjectOutputStream output;
+    public ObjectOutputStream output;
     private ObjectInputStream input;
     public Server server;
     public String roll_number = "NA";
@@ -134,13 +134,12 @@ public class ClientConnect implements Runnable{
                 //HouseKeeping chores
 
                 roll_number = loginAttempt.roll_number;
-                server.connectedUsers.add(roll_number);
+                server.addToConnectedClientList(this);
 
                 //Sending confirmation back to the client
 
                 sendToClient(Auth);
-
-                sendToClient(new ConnectedUsers(server.connectedUsers));
+                server.broadcast();
 
                 System.out.println("Roll Number : " + loginAttempt.roll_number + " has logged in!");
 
@@ -189,6 +188,8 @@ public class ClientConnect implements Runnable{
     private void sendToClient(Packet message) throws IOException {
         output.writeObject(message);
     }
+
+
 
 
 }

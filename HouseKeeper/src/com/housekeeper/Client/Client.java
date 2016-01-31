@@ -99,8 +99,8 @@ public class Client  implements Runnable{
             System.out.println(chat.from + "says : " + chat.message);
 
         } else if(p.type == Packet.Type.CONNECTED_USERS) {
-            System.out.println("The packet type recieved is a connectedUsers");
             ConnectedUsers users = (ConnectedUsers) p;
+            System.out.println(users.message);
             this.connectedUsers = users.connectedUsers;
 
         }

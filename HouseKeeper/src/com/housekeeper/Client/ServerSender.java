@@ -114,7 +114,7 @@ public class ServerSender implements Runnable {
         System.out.println("The users currently connected are: ");
 
         for(int i=0;i<client.connectedUsers.size();i++) {
-            System.out.println(i + ". " + client.connectedUsers.get(i));
+            System.out.println(i+1 + ". " + client.connectedUsers.get(i));
         }
     }
 

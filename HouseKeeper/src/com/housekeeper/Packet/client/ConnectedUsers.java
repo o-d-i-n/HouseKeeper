@@ -15,6 +15,7 @@ public class ConnectedUsers extends Packet {
     public ConnectedUsers(List<String> connectedUsers) {
         this.type = Type.CONNECTED_USERS;
         this.connectedUsers = connectedUsers;
+        this.message = "This packet contains the information fo the currently connected Users";
         if(this.connectedUsers.isEmpty()) {
             System.out.println("You're sending an empty packet");
         }

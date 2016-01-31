@@ -3,6 +3,7 @@ package com.housekeeper.Server;
 
 
 import com.housekeeper.Database.Database;
+import com.housekeeper.Packet.client.ConnectedUsers;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -74,7 +75,6 @@ public class Server implements Runnable{
         clientSocket = server.accept();
         System.out.println("Now connected to..."+clientSocket.getInetAddress().getHostName()+"\n");
         ClientConnect newClient = new ClientConnect(clientSocket,"Thread Pooled Server",this);
-        Clients.add(newClient);
         this.threadPool.execute(newClient);
     }
 
@@ -99,6 +99,18 @@ public class Server implements Runnable{
             }
         }
         return null;
+    }
+
+    public void addToConnectedClientList(ClientConnect client) {
+        Clients.add(client);
+        connectedUsers.add(client.roll_number);
+    }
+
+    public void broadcast() throws IOException {
+
+        for(int i=0;i<Clients.size();i++) {
+            Clients.get(i).output.writeObject(new ConnectedUsers(connectedUsers));
+        }
     }
 
 
