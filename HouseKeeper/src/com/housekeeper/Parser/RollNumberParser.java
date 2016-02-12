@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class RollNumberParser {
 
-    String[] features;
+    private String[] features;
     private static final Map<String,Integer> Branch = Collections.unmodifiableMap(
             new HashMap<String,Integer>() {{
                 put("COE",7);
@@ -48,7 +48,6 @@ public class RollNumberParser {
     public int timeTableCodeGen(int section,int year,String branch)
     {
         return Branch.get(branch)*Section.get(section)*Year.get(year)* (Calendar.getInstance().get(Calendar.MONTH) < 6?EVEN:ODD);
-
     }
 
 }

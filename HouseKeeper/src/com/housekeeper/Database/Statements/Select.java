@@ -45,4 +45,22 @@ public class Select {
         return false;
 
     }
+
+    public void getTimeTable(int id) throws SQLException {
+        sql = "SELECT * FROM `user` WHERE `id` = '" + id + "'";
+
+        connection.getData(sql);
+
+        while(connection.resultSet.next()) {
+            String raw_monday = connection.resultSet.getString("monday");
+            String raw_tueday = connection.resultSet.getString("monday");
+            String raw_wednesday = connection.resultSet.getString("monday");
+            String raw_thursday = connection.resultSet.getString("monday");
+            String raw_friday = connection.resultSet.getString("monday");
+        }
+
+
+
+    }
+
 }
