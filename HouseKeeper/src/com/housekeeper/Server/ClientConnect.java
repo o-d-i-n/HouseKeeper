@@ -26,13 +26,13 @@ public class ClientConnect implements Runnable{
     public ObjectOutputStream output;
     private ObjectInputStream input;
     public Server server;
+    StudentInfo studentInfo;
     public String roll_number = "NA";
     public boolean running = true;
     private Insert insert;
     private Update update;
     private Select select;
     private String auth_code;
-    private boolean auth = false;
     private SecureRandom random = new SecureRandom();
 
 
@@ -112,10 +112,10 @@ public class ClientConnect implements Runnable{
 
         if(student.type == Packet.Type.STUDENT_INFO) {
 
-            StudentInfo studentInfo = (StudentInfo)student;
 
-            if(Objects.equals(studentInfo.auth_code, auth_code) ) {
+            if(Objects.equals(student.auth_code, auth_code) ) {
 
+                studentInfo = (StudentInfo)student;
                 update.studentInfo(studentInfo, "user");
                 sendToClient(new ClientPacket("Request Successful"));
 
@@ -129,6 +129,7 @@ public class ClientConnect implements Runnable{
             StudentLogin loginAttempt = (StudentLogin)student;
 
             if(select.login(loginAttempt)) {
+
                 auth_code = new BigInteger(130, random).toString(32);
                 Packet Auth = new ClientPacket(auth_code,"You have Logged In ! Store Your auth key,use it for all communications from now on.");
 
@@ -182,9 +183,12 @@ public class ClientConnect implements Runnable{
             sendToClient(new ConnectedUsers(server.connectedUsers));
             return true;
         } else if(student.type == Packet.Type.TIMETABLE) {
-            TimeTable timetable = select.getTimeTable(36519);
-            sendToClient(timetable);
-            return true;
+
+            if(Objects.equals(student.auth_code, auth_code) ) {
+                TimeTable timetable = select.getTimeTable(36519);
+                sendToClient(timetable);
+                return true;
+            }
         }
 
         return false;

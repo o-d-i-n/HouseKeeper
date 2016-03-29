@@ -15,8 +15,9 @@ public class TimeTable extends Packet {
     String[] thursday;
     String[] friday;
 
-    public TimeTable() {
+    public TimeTable(String auth_code) {
         this.type = Type.TIMETABLE;
+        this.auth_code = auth_code;
     }
 
     public TimeTable(String monday,String tuesday,String wednesday,String thursday,String friday) {

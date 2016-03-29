@@ -59,7 +59,7 @@ public class ServerSender implements Runnable {
     }
 
     private TimeTable sendTimeTableReq() {
-        return new TimeTable();
+        return new TimeTable(client.auth_code);
     }
 
     private ChatPacket sendMessage() {

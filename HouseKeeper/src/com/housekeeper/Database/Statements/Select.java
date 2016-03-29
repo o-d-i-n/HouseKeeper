@@ -16,6 +16,7 @@ public class Select {
     private Database connection;
     private String sql;
 
+
     public Select(Database connection) {
         this.connection = connection;
     }
@@ -49,7 +50,6 @@ public class Select {
 
     public TimeTable getTimeTable(int id) throws SQLException {
         sql = "SELECT * FROM `timetable` WHERE `id` = 36519";
-        System.out.println("HEY");
         connection.getData(sql);
 
         while(connection.resultSet.next()) {
@@ -66,5 +66,8 @@ public class Select {
         return null;
 
     }
+
+
+
 
 }

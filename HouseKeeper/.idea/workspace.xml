@@ -31,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/ServerMain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
                 <element signature="method#ServerMain#0;class#ServerMain#0" expanded="false" />
                 <element signature="method#main#0;class#ServerMain#0" expanded="false" />
@@ -43,8 +43,8 @@
       <file leaf-file-name="ClientConnect.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/ClientConnect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.4863884">
-              <caret line="153" column="53" selection-start-line="153" selection-start-column="53" selection-end-line="153" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.5017241">
+              <caret line="187" column="58" selection-start-line="187" selection-start-column="58" selection-end-line="187" selection-end-column="58" />
               <folding>
                 <element signature="method#ClientConnect#0;class#ClientConnect#0" expanded="false" />
                 <element signature="method#stop#0;class#ClientConnect#0" expanded="false" />
@@ -56,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RollNumberParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Parser/RollNumberParser.java">
+      <file leaf-file-name="ClientPacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/server/ClientPacket.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
+              <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -70,46 +70,30 @@
         <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/TimeTable.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#321#322#0" expanded="true" />
-                <element signature="e#363#364#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentRegister.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/StudentRegister.java">
+      <file leaf-file-name="Packet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/Packet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="42" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="42" />
+              <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Select.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Select.java">
+      <file leaf-file-name="StudentInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/StudentInfo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+              <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.9655173">
-              <caret line="75" column="84" selection-start-line="75" selection-start-column="83" selection-end-line="75" selection-end-column="84" />
-              <folding>
-                <element signature="e#610#618#0" expanded="true" />
-                <element signature="method#Server#0;class#Server#0" expanded="false" />
-                <element signature="method#stop#0;class#Server#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -118,11 +102,11 @@
         <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Client/ServerSender.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+              <caret line="56" column="13" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
               <folding>
                 <element signature="method#ServerSender#0;class#ServerSender#0" expanded="false" />
                 <element signature="e#1901#1902#0" expanded="true" />
-                <element signature="e#1939#1940#0" expanded="true" />
+                <element signature="e#1955#1956#0" expanded="true" />
                 <element signature="method#sendMessage#0;class#ServerSender#0" expanded="false" />
                 <element signature="method#sendLoginRequest#0;class#ServerSender#0" expanded="false" />
                 <element signature="method#sendRegistration#0;class#ServerSender#0" expanded="false" />
@@ -132,11 +116,24 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="75" column="84" selection-start-line="75" selection-start-column="83" selection-end-line="75" selection-end-column="84" />
+              <folding>
+                <element signature="method#Server#0;class#Server#0" expanded="false" />
+                <element signature="method#stop#0;class#Server#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="115" column="54" selection-start-line="115" selection-start-column="54" selection-end-line="115" selection-end-column="54" />
+              <caret line="104" column="39" selection-start-line="104" selection-start-column="39" selection-end-line="104" selection-end-column="39" />
               <folding>
                 <element signature="method#Client#0;class#Client#0" expanded="false" />
                 <element signature="method#run#0;class#Client#0" expanded="false" />
@@ -148,11 +145,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatPacket.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/ChatPacket.java">
+      <file leaf-file-name="Select.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Select.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -191,18 +188,18 @@
         <option value="$PROJECT_DIR$/src/com/housekeeper/Packet/client/StudentLogin.java" />
         <option value="$PROJECT_DIR$/src/com/housekeeper/Database/Database.java" />
         <option value="$PROJECT_DIR$/src/com/housekeeper/Server/ServerMain.java" />
-        <option value="$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Insert.java" />
         <option value="$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Update.java" />
         <option value="$PROJECT_DIR$/src/com/housekeeper/Client/ClientMain.java" />
         <option value="$PROJECT_DIR$/src/com/housekeeper/Packet/client/ConnectedUsers.java" />
-        <option value="$PROJECT_DIR$/src/com/housekeeper/Parser/RollNumberParser.java" />
         <option value="$PROJECT_DIR$/src/com/housekeeper/Packet/Packet.java" />
         <option value="$PROJECT_DIR$/src/com/housekeeper/Server/Server.java" />
-        <option value="$PROJECT_DIR$/src/com/housekeeper/Packet/client/TimeTable.java" />
-        <option value="$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Select.java" />
         <option value="$PROJECT_DIR$/src/com/housekeeper/Client/Client.java" />
-        <option value="$PROJECT_DIR$/src/com/housekeeper/Client/ServerSender.java" />
+        <option value="$PROJECT_DIR$/src/com/housekeeper/Parser/RollNumberParser.java" />
+        <option value="$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Insert.java" />
         <option value="$PROJECT_DIR$/src/com/housekeeper/Server/ClientConnect.java" />
+        <option value="$PROJECT_DIR$/src/com/housekeeper/Packet/client/TimeTable.java" />
+        <option value="$PROJECT_DIR$/src/com/housekeeper/Client/ServerSender.java" />
+        <option value="$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Select.java" />
       </list>
     </option>
   </component>
@@ -244,8 +241,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -455,6 +450,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -790,12 +787,10 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30126184" sideWeight="0.50292826" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4786184" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20497803" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -803,14 +798,16 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4786184" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.027086383" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -883,7 +880,6 @@
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
             <element signature="method#connection#0;class#Client#0" expanded="false" />
-            <element signature="method#dealWith#0;class#Client#0" expanded="false" />
             <element signature="method#stop#0;class#Client#0" expanded="false" />
           </folding>
         </state>
@@ -912,11 +908,9 @@
           <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
           <folding>
             <element signature="method#ClientConnect#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#run#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#stop#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#removeFromClient#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#setupStreams#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#connection#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#sendToClient#0;class#ClientConnect#0" expanded="false" />
           </folding>
         </state>
@@ -949,7 +943,6 @@
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
             <element signature="method#connection#0;class#Client#0" expanded="false" />
-            <element signature="method#dealWith#0;class#Client#0" expanded="false" />
             <element signature="method#stop#0;class#Client#0" expanded="false" />
           </folding>
         </state>
@@ -978,11 +971,9 @@
           <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
           <folding>
             <element signature="method#ClientConnect#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#run#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#stop#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#removeFromClient#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#setupStreams#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#connection#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#sendToClient#0;class#ClientConnect#0" expanded="false" />
           </folding>
         </state>
@@ -1015,7 +1006,6 @@
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
             <element signature="method#connection#0;class#Client#0" expanded="false" />
-            <element signature="method#dealWith#0;class#Client#0" expanded="false" />
             <element signature="method#stop#0;class#Client#0" expanded="false" />
           </folding>
         </state>
@@ -1044,11 +1034,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="method#ClientConnect#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#run#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#stop#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#removeFromClient#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#setupStreams#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#connection#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#sendToClient#0;class#ClientConnect#0" expanded="false" />
           </folding>
         </state>
@@ -1081,7 +1069,6 @@
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
             <element signature="method#connection#0;class#Client#0" expanded="false" />
-            <element signature="method#dealWith#0;class#Client#0" expanded="false" />
             <element signature="method#stop#0;class#Client#0" expanded="false" />
           </folding>
         </state>
@@ -1110,11 +1097,9 @@
           <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
           <folding>
             <element signature="method#ClientConnect#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#run#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#stop#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#removeFromClient#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#setupStreams#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#connection#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#sendToClient#0;class#ClientConnect#0" expanded="false" />
           </folding>
         </state>
@@ -1140,7 +1125,6 @@
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
             <element signature="method#connection#0;class#Client#0" expanded="false" />
-            <element signature="method#dealWith#0;class#Client#0" expanded="false" />
             <element signature="method#stop#0;class#Client#0" expanded="false" />
           </folding>
         </state>
@@ -1162,11 +1146,9 @@
           <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
           <folding>
             <element signature="method#ClientConnect#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#run#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#stop#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#removeFromClient#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#setupStreams#0;class#ClientConnect#0" expanded="false" />
-            <element signature="method#connection#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#sendToClient#0;class#ClientConnect#0" expanded="false" />
           </folding>
         </state>
@@ -1197,22 +1179,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Insert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HouseKeeper.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Database/Database.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1239,26 +1205,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/server/ClientPacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/ConnectedUsers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="95" selection-start-line="17" selection-start-column="95" selection-end-line="17" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/Packet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1271,10 +1221,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/StudentInfo.java">
+    <entry file="file://$PROJECT_DIR$/HouseKeeper.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="88" selection-start-line="14" selection-start-column="88" selection-end-line="14" selection-end-column="88" />
+          <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -1287,6 +1237,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Parser/RollNumberParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/StudentRegister.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1295,33 +1253,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Parser/RollNumberParser.java">
+    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Insert.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
+          <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/ServerMain.java">
+    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/StudentInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-          <folding>
-            <element signature="method#ServerMain#0;class#ServerMain#0" expanded="false" />
-            <element signature="method#main#0;class#ServerMain#0" expanded="false" />
-          </folding>
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/server/ClientPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/Packet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/TimeTable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#321#322#0" expanded="true" />
-            <element signature="e#363#364#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1329,15 +1298,31 @@
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Select.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Client/ServerSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="13" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+          <folding>
+            <element signature="method#ServerSender#0;class#ServerSender#0" expanded="false" />
+            <element signature="e#1901#1902#0" expanded="true" />
+            <element signature="e#1955#1956#0" expanded="true" />
+            <element signature="method#sendMessage#0;class#ServerSender#0" expanded="false" />
+            <element signature="method#sendLoginRequest#0;class#ServerSender#0" expanded="false" />
+            <element signature="method#sendRegistration#0;class#ServerSender#0" expanded="false" />
+            <element signature="method#sendStudentInfo#0;class#ServerSender#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="54" selection-start-line="115" selection-start-column="54" selection-end-line="115" selection-end-column="54" />
+          <caret line="104" column="39" selection-start-line="104" selection-start-column="39" selection-end-line="104" selection-end-column="39" />
           <folding>
             <element signature="method#Client#0;class#Client#0" expanded="false" />
             <element signature="method#run#0;class#Client#0" expanded="false" />
@@ -1348,28 +1333,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Client/ServerSender.java">
+    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="method#ServerSender#0;class#ServerSender#0" expanded="false" />
-            <element signature="e#1901#1902#0" expanded="true" />
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="method#sendMessage#0;class#ServerSender#0" expanded="false" />
-            <element signature="method#sendLoginRequest#0;class#ServerSender#0" expanded="false" />
-            <element signature="method#sendRegistration#0;class#ServerSender#0" expanded="false" />
-            <element signature="method#sendStudentInfo#0;class#ServerSender#0" expanded="false" />
+            <element signature="method#ServerMain#0;class#ServerMain#0" expanded="false" />
+            <element signature="method#main#0;class#ServerMain#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9655173">
+        <state vertical-scroll-proportion="0.0">
           <caret line="75" column="84" selection-start-line="75" selection-start-column="83" selection-end-line="75" selection-end-column="84" />
           <folding>
-            <element signature="e#610#618#0" expanded="true" />
             <element signature="method#Server#0;class#Server#0" expanded="false" />
             <element signature="method#stop#0;class#Server#0" expanded="false" />
           </folding>
@@ -1378,8 +1357,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/ClientConnect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.4863884">
-          <caret line="153" column="53" selection-start-line="153" selection-start-column="53" selection-end-line="153" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.5017241">
+          <caret line="187" column="58" selection-start-line="187" selection-start-column="58" selection-end-line="187" selection-end-column="58" />
           <folding>
             <element signature="method#ClientConnect#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#stop#0;class#ClientConnect#0" expanded="false" />
