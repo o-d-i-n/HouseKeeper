@@ -1,10 +1,7 @@
 package com.housekeeper.Client;
 
 import com.housekeeper.Packet.Packet;
-import com.housekeeper.Packet.client.ChatPacket;
-import com.housekeeper.Packet.client.StudentInfo;
-import com.housekeeper.Packet.client.StudentLogin;
-import com.housekeeper.Packet.client.StudentRegister;
+import com.housekeeper.Packet.client.*;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -32,6 +29,7 @@ public class ServerSender implements Runnable {
         System.out.println("3. Share Your Info (You need to login before trying this step out)");
         System.out.println("4. See connected Users");
         System.out.println("5. Send a private message ");
+        System.out.println("6. Get Time Table ");
 
 
         option = inputLine.nextInt();
@@ -51,11 +49,17 @@ public class ServerSender implements Runnable {
                     displayConnectedUsers();
                 } else if(option == 5) {
                     client.output.writeObject(sendMessage());
+                } else if(option == 6) {
+                    client.output.writeObject(sendTimeTableReq());
                 }
             } catch (IOException e) {
                 // close connections gracefully
             }
         }
+    }
+
+    private TimeTable sendTimeTableReq() {
+        return new TimeTable();
     }
 
     private ChatPacket sendMessage() {

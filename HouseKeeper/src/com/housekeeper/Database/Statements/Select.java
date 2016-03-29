@@ -3,6 +3,7 @@ package com.housekeeper.Database.Statements;
 import com.housekeeper.Database.Database;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
+import com.housekeeper.Packet.client.TimeTable;
 
 import java.sql.SQLException;
 import java.util.Objects;
@@ -35,7 +36,7 @@ public class Select {
         while(connection.resultSet.next()) {
 
             String password = connection.resultSet.getString("password");
-            System.out.println(password);
+
             if(Objects.equals(studentLogin.password,password)) {
                 return true;
             }
@@ -46,20 +47,23 @@ public class Select {
 
     }
 
-    public void getTimeTable(int id) throws SQLException {
-        sql = "SELECT * FROM `user` WHERE `id` = '" + id + "'";
-
+    public TimeTable getTimeTable(int id) throws SQLException {
+        sql = "SELECT * FROM `timetable` WHERE `id` = 36519";
+        System.out.println("HEY");
         connection.getData(sql);
 
         while(connection.resultSet.next()) {
             String raw_monday = connection.resultSet.getString("monday");
-            String raw_tueday = connection.resultSet.getString("monday");
+            String raw_tuesday = connection.resultSet.getString("monday");
             String raw_wednesday = connection.resultSet.getString("monday");
             String raw_thursday = connection.resultSet.getString("monday");
             String raw_friday = connection.resultSet.getString("monday");
+
+            return new TimeTable(raw_monday,raw_tuesday,raw_wednesday,raw_thursday,raw_friday);
+
         }
 
-
+        return null;
 
     }
 

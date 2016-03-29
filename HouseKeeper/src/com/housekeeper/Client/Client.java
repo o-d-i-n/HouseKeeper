@@ -22,6 +22,7 @@ public class Client  implements Runnable{
     public ObjectOutputStream output;
     public ObjectInputStream input;
     public boolean running;
+    TimeTable timetable;
     public String roll_number;
     public String auth_code;
     List<String> connectedUsers = new ArrayList<String>();
@@ -103,6 +104,9 @@ public class Client  implements Runnable{
             System.out.println(users.message);
             this.connectedUsers = users.connectedUsers;
 
+        } else if(p.type == Packet.Type.TIMETABLE) {
+            timetable = (TimeTable)p;
+            timetable.displayTimeTable();
         }
     }
 

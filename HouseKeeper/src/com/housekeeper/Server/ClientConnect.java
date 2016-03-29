@@ -32,6 +32,7 @@ public class ClientConnect implements Runnable{
     private Update update;
     private Select select;
     private String auth_code;
+    private boolean auth = false;
     private SecureRandom random = new SecureRandom();
 
 
@@ -179,6 +180,10 @@ public class ClientConnect implements Runnable{
 
         } else if(student.type == Packet.Type.CONNECTED_USERS) {
             sendToClient(new ConnectedUsers(server.connectedUsers));
+            return true;
+        } else if(student.type == Packet.Type.TIMETABLE) {
+            TimeTable timetable = select.getTimeTable(36519);
+            sendToClient(timetable);
             return true;
         }
 

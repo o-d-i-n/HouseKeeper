@@ -73,7 +73,7 @@ public class Server implements Runnable{
     private void waitForConnection() throws IOException {
         System.out.println("Waiting for someone to connect... \n");
         clientSocket = server.accept();
-        System.out.println("Now connected to..."+clientSocket.getInetAddress().getHostName()+"\n");
+        System.out.println("Now connected to..."+ clientSocket.getInetAddress().getHostName() +"\n");
         ClientConnect newClient = new ClientConnect(clientSocket,"Thread Pooled Server",this);
         this.threadPool.execute(newClient);
     }
