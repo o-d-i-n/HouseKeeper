@@ -1,10 +1,12 @@
 package com.housekeeper.Database.Statements;
 
 import com.housekeeper.Database.Database;
+import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
 import com.housekeeper.Packet.client.TimeTable;
 
+import javax.management.relation.RoleList;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -24,7 +26,7 @@ public class Select {
     public boolean checkIfUser(StudentRegister studentRegister) throws SQLException {
         sql = "SELECT `user_id` FROM `user` WHERE `roll_number` = '"+ studentRegister.roll_number +"'";
 
-       return connection.getData(sql);
+       return executeStatement(sql);
 
 
     }
@@ -32,7 +34,7 @@ public class Select {
     public boolean login(StudentLogin studentLogin) throws SQLException {
         sql = "SELECT `password` FROM `user` WHERE `roll_number` = '"+ studentLogin.roll_number +"'";
 
-        connection.getData(sql);
+        executeStatement(sql);
 
         while(connection.resultSet.next()) {
 
@@ -50,7 +52,7 @@ public class Select {
 
     public TimeTable getTimeTable(int id) throws SQLException {
         sql = "SELECT * FROM `timetable` WHERE `id` = 36519";
-        connection.getData(sql);
+        executeStatement(sql);
 
         while(connection.resultSet.next()) {
             String raw_monday = connection.resultSet.getString("monday");
@@ -65,6 +67,31 @@ public class Select {
 
         return null;
 
+    }
+
+
+
+    public StudentInfo getStudentInfo(String roll_numberz) throws SQLException {
+        sql = "SELECT * FROM `user` WHERE `roll_number` = \"" + roll_numberz+"\"";
+        executeStatement(sql);
+
+        while(connection.resultSet.next()) {
+
+            String user_id = connection.resultSet.getString("user_id");
+            String roll_number = connection.resultSet.getString("roll_number");
+            String name = connection.resultSet.getString("name");
+            String section = connection.resultSet.getString("section");
+
+            return new StudentInfo(user_id,roll_number,section,name);
+
+        }
+
+        return null;
+
+    }
+
+    private boolean executeStatement(String sql) throws SQLException {
+        return connection.getData(sql);
     }
 
 

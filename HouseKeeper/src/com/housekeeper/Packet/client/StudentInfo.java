@@ -9,8 +9,17 @@ public class StudentInfo extends Packet {
 
     public String name;
     public int percentage;
-    public int section;
+    public String section;
     public String branch;
+    public String user_id = "NA";
+
+    public StudentInfo(String user_id,String roll_number,String section,String name)
+    {
+        this.user_id = user_id;
+        this.section = section;
+        this.name = name;
+        this.roll_number = roll_number;
+    }
 
     public StudentInfo(Type type, String name, String branch, int percentage, int section, String auth_code, String roll_number) {
         this.auth_code = auth_code;
@@ -18,7 +27,7 @@ public class StudentInfo extends Packet {
         this.name = name;
         this.branch =branch;
         this.percentage = percentage;
-        this.section = section;
+        this.section = Integer.toString(section);
         this.type = type;
     }
 

@@ -6,6 +6,7 @@ import com.housekeeper.Database.Statements.Update;
 import com.housekeeper.Packet.Packet;
 import com.housekeeper.Packet.client.*;
 import com.housekeeper.Packet.server.ClientPacket;
+import com.housekeeper.Parser.RollNumberParser;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,6 +15,7 @@ import java.math.BigInteger;
 import java.net.Socket;
 import java.security.SecureRandom;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -185,8 +187,24 @@ public class ClientConnect implements Runnable{
         } else if(student.type == Packet.Type.TIMETABLE) {
 
             if(Objects.equals(student.auth_code, auth_code) ) {
-                TimeTable timetable = select.getTimeTable(36519);
-                sendToClient(timetable);
+
+                if(studentInfo == null) {
+                    studentInfo = select.getStudentInfo(roll_number);
+                    if(studentInfo != null) {
+
+                        String[] features = RollNumberParser.rollNumberParser(roll_number);
+                        int timeTableCode = RollNumberParser.timeTableCodeGen(Integer.parseInt(studentInfo.section), Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(features[2]) + 1, features[1]);
+
+                        TimeTable timetable = select.getTimeTable(timeTableCode);
+                        sendToClient(timetable);
+                    } else {
+                        sendToClient(new ClientPacket("Sorry but we need your studentDetails to get Time Table Information"));
+                    }
+                    
+                } else {
+                    TimeTable timetable = select.getTimeTable(36519);
+                    sendToClient(timetable);
+                }
                 return true;
             }
         }
