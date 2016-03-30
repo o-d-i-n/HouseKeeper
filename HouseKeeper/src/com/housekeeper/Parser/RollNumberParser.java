@@ -41,7 +41,7 @@ public class RollNumberParser {
     public static String[] rollNumberParser(String roll_number)
     {
         String[] features = roll_number.split("/");
-        features[2] = "20" + features;
+        features[2] = "20" + features[2];
         return features;
     }
 

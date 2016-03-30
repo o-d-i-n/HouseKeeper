@@ -193,14 +193,14 @@ public class ClientConnect implements Runnable{
                     if(studentInfo != null) {
 
                         String[] features = RollNumberParser.rollNumberParser(roll_number);
-                        int timeTableCode = RollNumberParser.timeTableCodeGen(Integer.parseInt(studentInfo.section), Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(features[2]) + 1, features[1]);
-
+                        int timeTableCode = RollNumberParser.timeTableCodeGen(Integer.parseInt(studentInfo.section), Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(features[2]), features[1]);
+                        System.out.println(timeTableCode);
                         TimeTable timetable = select.getTimeTable(timeTableCode);
                         sendToClient(timetable);
                     } else {
                         sendToClient(new ClientPacket("Sorry but we need your studentDetails to get Time Table Information"));
                     }
-                    
+
                 } else {
                     TimeTable timetable = select.getTimeTable(36519);
                     sendToClient(timetable);

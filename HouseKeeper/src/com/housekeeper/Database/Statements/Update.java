@@ -20,7 +20,7 @@ public class Update {
 
     public void studentInfo(StudentInfo studentInfo, String table) throws SQLException {
 
-        sql = "UPDATE "+ table +" SET `name`='"+studentInfo.name+"' WHERE `roll_number`='"+studentInfo.roll_number+"'";
+        sql = "UPDATE "+ table +" SET `name`='"+studentInfo.name+"', `section`='" +studentInfo.section+ "' WHERE `roll_number`='"+studentInfo.roll_number+"'";
 
         connection.sendData(sql);
 
