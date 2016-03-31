@@ -28,7 +28,7 @@ public class ClientConnect implements Runnable{
     public ObjectOutputStream output;
     private ObjectInputStream input;
     public Server server;
-    StudentInfo studentInfo;
+    private StudentInfo studentInfo;
     public String roll_number = "NA";
     public boolean running = true;
     private Insert insert;

@@ -17,6 +17,7 @@ public class Select {
 
     private Database connection;
     private String sql;
+    private String[] temp;
 
 
     public Select(Database connection) {
@@ -56,10 +57,22 @@ public class Select {
 
         while(connection.resultSet.next()) {
             String raw_monday = connection.resultSet.getString("monday");
-            String raw_tuesday = connection.resultSet.getString("monday");
-            String raw_wednesday = connection.resultSet.getString("monday");
-            String raw_thursday = connection.resultSet.getString("monday");
-            String raw_friday = connection.resultSet.getString("monday");
+            String raw_tuesday = connection.resultSet.getString("tuesday");
+            String raw_wednesday = connection.resultSet.getString("wednesday");
+            String raw_thursday = connection.resultSet.getString("thursday");
+            String raw_friday = connection.resultSet.getString("friday");
+
+            temp = raw_monday.split(";");
+            String[] temp2 = temp;
+            for(int i=0;i<temp2.length;i++) {
+
+                temp = temp2;
+                temp = temp[i].split("!");
+                String subject = temp[1];
+                subject = getSubjectInfo(subject);
+                temp[1] = subject;
+
+            }
 
             return new TimeTable(raw_monday,raw_tuesday,raw_wednesday,raw_thursday,raw_friday);
 
@@ -90,9 +103,21 @@ public class Select {
 
     }
 
+    public String getSubjectInfo(String subject_code) throws SQLException {
+        sql = "SELECT * FROM `subjects` WHERE `code`=\""+subject_code + "\"";
+        executeStatement(sql);
+
+        while(connection.resultSet.next()) {
+            return connection.resultSet.getString("subject_name");
+        }
+
+        return null;
+    }
+
     private boolean executeStatement(String sql) throws SQLException {
         return connection.getData(sql);
     }
+
 
 
 
