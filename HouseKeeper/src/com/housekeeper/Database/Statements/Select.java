@@ -5,6 +5,7 @@ import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
 import com.housekeeper.Packet.client.TimeTable;
+import com.sun.deploy.util.StringUtils;
 
 import javax.management.relation.RoleList;
 import java.sql.SQLException;
@@ -56,25 +57,13 @@ public class Select {
         executeStatement(sql);
 
         while(connection.resultSet.next()) {
-            String raw_monday = connection.resultSet.getString("monday");
-            String raw_tuesday = connection.resultSet.getString("tuesday");
-            String raw_wednesday = connection.resultSet.getString("wednesday");
-            String raw_thursday = connection.resultSet.getString("thursday");
-            String raw_friday = connection.resultSet.getString("friday");
+            String final_monday = parseDay(connection.resultSet.getString("monday"));
+            String final_tuesday = parseDay(connection.resultSet.getString("tuesday"));
+            String final_wednesday = parseDay(connection.resultSet.getString("wednesday"));
+            String final_thursday = parseDay(connection.resultSet.getString("thursday"));
+            String final_friday = parseDay(connection.resultSet.getString("friday"));
 
-            temp = raw_monday.split(";");
-            String[] temp2 = temp;
-            for(int i=0;i<temp2.length;i++) {
-
-                temp = temp2;
-                temp = temp[i].split("!");
-                String subject = temp[1];
-                subject = getSubjectInfo(subject);
-                temp[1] = subject;
-
-            }
-
-            return new TimeTable(raw_monday,raw_tuesday,raw_wednesday,raw_thursday,raw_friday);
+            return new TimeTable(final_monday,final_tuesday,final_wednesday,final_thursday,final_friday);
 
         }
 
@@ -114,6 +103,36 @@ public class Select {
         return null;
     }
 
+    private String parseDay(String day) throws SQLException {
+
+        temp = day.split(";");
+        String final_day = "";
+        String[] temp2 = temp;
+
+        for(int i=0;i<temp2.length;i++) {
+
+            temp = temp2;
+            temp = temp[i].split("!");
+            String subject = temp[1];
+            subject = getSubjectInfo(subject);
+            temp[1] = subject;
+            String better ="";
+
+            for(int j = 0;j<temp.length;i++)
+            {
+                if(better != "")
+                    better = better + "!" +temp[j];
+                else
+                    better = better + temp[j];
+            }
+            if(final_day == "")
+                final_day = final_day + ";" + better;
+            else
+                final_day = final_day + better;
+        }
+
+        return final_day;
+    }
     private boolean executeStatement(String sql) throws SQLException {
         return connection.getData(sql);
     }

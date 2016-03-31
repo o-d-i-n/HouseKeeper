@@ -43,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/ClientConnect.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="194" column="65" selection-start-line="194" selection-start-column="65" selection-end-line="194" selection-end-column="65" />
+              <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
               <folding>
                 <element signature="method#ClientConnect#0;class#ClientConnect#0" expanded="false" />
                 <element signature="method#stop#0;class#ClientConnect#0" expanded="false" />
@@ -103,10 +103,7 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="103" column="94" selection-start-line="103" selection-start-column="94" selection-end-line="103" selection-end-column="94" />
               <folding>
-                <element signature="imports" expanded="false" />
                 <element signature="method#ServerSender#0;class#ServerSender#0" expanded="false" />
-                <element signature="e#1901#1902#0" expanded="false" />
-                <element signature="e#1955#1956#0" expanded="false" />
                 <element signature="method#sendMessage#0;class#ServerSender#0" expanded="false" />
                 <element signature="method#sendLoginRequest#0;class#ServerSender#0" expanded="false" />
                 <element signature="method#sendRegistration#0;class#ServerSender#0" expanded="false" />
@@ -121,10 +118,7 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="82" column="5" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="false" />
                 <element signature="method#Server#0;class#Server#0" expanded="false" />
-                <element signature="e#2123#2124#0" expanded="false" />
-                <element signature="e#2158#2159#0" expanded="false" />
                 <element signature="method#stop#0;class#Server#0" expanded="false" />
               </folding>
             </state>
@@ -137,7 +131,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="69" column="46" selection-start-line="69" selection-start-column="46" selection-end-line="69" selection-end-column="46" />
               <folding>
-                <element signature="imports" expanded="false" />
                 <element signature="method#Client#0;class#Client#0" expanded="false" />
                 <element signature="method#run#0;class#Client#0" expanded="false" />
                 <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
@@ -151,8 +144,8 @@
       <file leaf-file-name="Select.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Select.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44310346">
-              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5017241">
+              <caret line="125" column="46" selection-start-line="124" selection-start-column="20" selection-end-line="125" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -244,6 +237,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -452,9 +448,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -786,7 +779,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -879,7 +872,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="54" selection-end-column="47" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#Client#0;class#Client#0" expanded="false" />
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
@@ -943,7 +935,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#Client#0;class#Client#0" expanded="false" />
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
@@ -1007,7 +998,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="60" column="36" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#Client#0;class#Client#0" expanded="false" />
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
@@ -1071,7 +1061,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#Client#0;class#Client#0" expanded="false" />
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
@@ -1128,7 +1117,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#Client#0;class#Client#0" expanded="false" />
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
@@ -1275,7 +1263,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="46" selection-start-line="69" selection-start-column="46" selection-end-line="69" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#Client#0;class#Client#0" expanded="false" />
             <element signature="method#run#0;class#Client#0" expanded="false" />
             <element signature="method#setupStreams#0;class#Client#0" expanded="false" />
@@ -1300,10 +1287,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="103" column="94" selection-start-line="103" selection-start-column="94" selection-end-line="103" selection-end-column="94" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#ServerSender#0;class#ServerSender#0" expanded="false" />
-            <element signature="e#1901#1902#0" expanded="false" />
-            <element signature="e#1955#1956#0" expanded="false" />
             <element signature="method#sendMessage#0;class#ServerSender#0" expanded="false" />
             <element signature="method#sendLoginRequest#0;class#ServerSender#0" expanded="false" />
             <element signature="method#sendRegistration#0;class#ServerSender#0" expanded="false" />
@@ -1316,10 +1300,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="82" column="5" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#Server#0;class#Server#0" expanded="false" />
-            <element signature="e#2123#2124#0" expanded="false" />
-            <element signature="e#2158#2159#0" expanded="false" />
             <element signature="method#stop#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -1341,6 +1322,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/TimeTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HouseKeeper.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1352,7 +1343,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Server/ClientConnect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="194" column="65" selection-start-line="194" selection-start-column="65" selection-end-line="194" selection-end-column="65" />
+          <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
           <folding>
             <element signature="method#ClientConnect#0;class#ClientConnect#0" expanded="false" />
             <element signature="method#stop#0;class#ClientConnect#0" expanded="false" />
@@ -1363,20 +1354,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Packet/client/TimeTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/housekeeper/Database/Statements/Select.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44310346">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5017241">
+          <caret line="125" column="46" selection-start-line="124" selection-start-column="20" selection-end-line="125" selection-end-column="46" />
           <folding />
         </state>
       </provider>
