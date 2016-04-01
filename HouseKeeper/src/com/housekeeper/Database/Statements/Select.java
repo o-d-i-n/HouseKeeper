@@ -57,11 +57,17 @@ public class Select {
         executeStatement(sql);
 
         while(connection.resultSet.next()) {
-            String final_monday = parseDay(connection.resultSet.getString("monday"));
-            String final_tuesday = parseDay(connection.resultSet.getString("tuesday"));
-            String final_wednesday = parseDay(connection.resultSet.getString("wednesday"));
-            String final_thursday = parseDay(connection.resultSet.getString("thursday"));
-            String final_friday = parseDay(connection.resultSet.getString("friday"));
+            String final_monday = connection.resultSet.getString("monday");
+            String final_tuesday = connection.resultSet.getString("tuesday");
+            String final_wednesday = connection.resultSet.getString("wednesday");
+            String final_thursday = connection.resultSet.getString("thursday");
+            String final_friday = connection.resultSet.getString("friday");
+
+            final_monday = parseDay(final_monday);
+            final_tuesday = parseDay(final_tuesday);
+            final_wednesday = parseDay(final_wednesday);
+            final_thursday = parseDay(final_thursday);
+            final_friday = parseDay(final_friday);
 
             return new TimeTable(final_monday,final_tuesday,final_wednesday,final_thursday,final_friday);
 
@@ -118,19 +124,18 @@ public class Select {
             temp[1] = subject;
             String better ="";
 
-            for(int j = 0;j<temp.length;i++)
+            for(int j = 0;j<temp.length;j++)
             {
                 if(better != "")
                     better = better + "!" +temp[j];
                 else
                     better = better + temp[j];
             }
-            if(final_day == "")
+            if(final_day != "")
                 final_day = final_day + ";" + better;
             else
                 final_day = final_day + better;
         }
-
         return final_day;
     }
     private boolean executeStatement(String sql) throws SQLException {
