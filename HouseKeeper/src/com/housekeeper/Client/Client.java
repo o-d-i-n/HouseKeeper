@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Created by Lenovo on 1/17/2016.
@@ -28,6 +29,7 @@ public class Client  implements Runnable{
     List<String> connectedUsers = new ArrayList<String>();
     Thread listeningThread = null;
     Thread recievingThread = null;
+    Set<String> subjectSet;
 
     public Client() {
 
@@ -106,8 +108,10 @@ public class Client  implements Runnable{
 
         } else if(p.type == Packet.Type.TIMETABLE) {
             timetable = (TimeTable)p;
-            timetable.displayTimeTable();
+            this.subjectSet = timetable.displayTimeTable();
+
         }
+        System.out.println(p);
     }
 
     private void dealWith(ClientPacket serverResponse) {
@@ -119,7 +123,7 @@ public class Client  implements Runnable{
     }
 
     public synchronized void stop(){
-        System.out.println("Hey");
+        System.out.println("Connection closing down");
         this.running = false;
         try {
             this.connection.close();

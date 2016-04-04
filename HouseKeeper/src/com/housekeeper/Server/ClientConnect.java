@@ -15,7 +15,9 @@ import java.math.BigInteger;
 import java.net.Socket;
 import java.security.SecureRandom;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -112,6 +114,8 @@ public class ClientConnect implements Runnable{
 
     private boolean auth(Packet student) throws IOException, SQLException {
 
+        System.out.println("Recieved Stuff");
+
         if(student.type == Packet.Type.STUDENT_INFO) {
 
 
@@ -119,6 +123,8 @@ public class ClientConnect implements Runnable{
 
                 studentInfo = (StudentInfo)student;
                 update.studentInfo(studentInfo, "user");
+
+
                 sendToClient(new ClientPacket("Request Successful"));
 
                 return true;
@@ -207,6 +213,12 @@ public class ClientConnect implements Runnable{
                 }
                 return true;
             }
+        } else if(student.type == Packet.Type.SUBJECTS) {
+
+            Subjects subject = (Subjects)student;
+            insert.subjects(subject.subjects,studentInfo.user_id);
+
+            return true;
         }
 
         return false;

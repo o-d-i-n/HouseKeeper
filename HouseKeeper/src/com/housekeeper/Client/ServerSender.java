@@ -30,6 +30,7 @@ public class ServerSender implements Runnable {
         System.out.println("4. See connected Users");
         System.out.println("5. Send a private message ");
         System.out.println("6. Get Time Table ");
+        System.out.println("7. Send subject Set");
 
 
         option = inputLine.nextInt();
@@ -39,6 +40,7 @@ public class ServerSender implements Runnable {
         while(client.running) {
             cli();
             try {
+
                 if (option == 1) {
                     client.output.writeObject(sendRegistration());
                 } else if (option == 2) {
@@ -51,11 +53,23 @@ public class ServerSender implements Runnable {
                     client.output.writeObject(sendMessage());
                 } else if(option == 6) {
                     client.output.writeObject(sendTimeTableReq());
+                } else if(option == 7) {
+                    if(client.subjectSet != null) {
+                        client.output.writeObject(sendSubjectSet());
+                    } else {
+                        System.out.println("Please get your timetable first,before pushing subjects in");
+                    }
                 }
             } catch (IOException e) {
+
                 // close connections gracefully
             }
         }
+    }
+
+    private Subjects sendSubjectSet() {
+        System.out.println(client.subjectSet);
+        return new Subjects(client.subjectSet);
     }
 
     private TimeTable sendTimeTableReq() {
@@ -110,7 +124,6 @@ public class ServerSender implements Runnable {
 
     private void displayConnectedUsers() {
         if(client.connectedUsers.isEmpty()) {
-
             System.out.println("Sorry, no connected Users as of now");
             return;
         }

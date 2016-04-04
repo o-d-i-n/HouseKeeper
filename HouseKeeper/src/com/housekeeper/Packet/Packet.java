@@ -17,7 +17,8 @@ public abstract class Packet implements Serializable {
         CHAT,
         SERVER_RESPONSE,
         CONNECTED_USERS,
-        TIMETABLE
+        TIMETABLE,
+        SUBJECTS
     }
     public String auth_code;
     public String roll_number;

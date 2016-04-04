@@ -8,6 +8,8 @@ import com.housekeeper.Database.Database;
 import com.housekeeper.Packet.client.StudentRegister;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Set;
 
 
 /**
@@ -37,4 +39,12 @@ public class Insert {
         connection.sendData(sql);
 
     }
+    public void subjects(Object[] sub,String user_id) throws SQLException {
+
+        sql = "INSERT INTO `studentsubjects`(`user_id`, `subject1`, `subject2`, `subject3`, `subject4`, `subject5`) VALUES (" +
+                "'" + user_id + "','"+sub[0]+"','"+sub[1]+"','"+sub[2]+"','"+sub[3]+"','"+sub[4]+"')";
+
+        connection.sendData(sql);
+    }
+
 }

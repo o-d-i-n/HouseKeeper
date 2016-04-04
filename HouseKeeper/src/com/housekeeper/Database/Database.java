@@ -54,7 +54,6 @@ public class Database {
 
        System.out.print(statement.executeUpdate(sql));
 
-
     }
 
 }

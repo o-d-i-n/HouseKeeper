@@ -17,4 +17,5 @@ public class ClientPacket extends Packet {
         this.message = message;
         this.type = Type.SERVER_RESPONSE;
     }
+
 }
