@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * Created by Lenovo on 1/17/2016.
  */
-public class Client  implements Runnable{
+public class Client  implements Runnable {
 
     private Socket connection;
     public ObjectOutputStream output;
@@ -107,11 +107,12 @@ public class Client  implements Runnable{
             this.connectedUsers = users.connectedUsers;
 
         } else if(p.type == Packet.Type.TIMETABLE) {
-            timetable = (TimeTable)p;
-            this.subjectSet = timetable.displayTimeTable();
+
+                timetable = (TimeTable) p;
+                this.subjectSet = timetable.displayTimeTable();
+
 
         }
-        System.out.println(p);
     }
 
     private void dealWith(ClientPacket serverResponse) {

@@ -4,7 +4,8 @@ import com.housekeeper.Packet.Packet;
 import com.housekeeper.Packet.client.*;
 
 import java.io.IOException;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Lenovo on 1/24/2016.
@@ -31,6 +32,7 @@ public class ServerSender implements Runnable {
         System.out.println("5. Send a private message ");
         System.out.println("6. Get Time Table ");
         System.out.println("7. Send subject Set");
+        System.out.println("7. Send In Attendance");
 
 
         option = inputLine.nextInt();
@@ -52,13 +54,50 @@ public class ServerSender implements Runnable {
                 } else if(option == 5) {
                     client.output.writeObject(sendMessage());
                 } else if(option == 6) {
-                    client.output.writeObject(sendTimeTableReq());
+                    if(client.timetable == null) {
+                        client.output.writeObject(sendTimeTableReq());
+                    } else {
+                        client.timetable.displayTimeTable();
+                    }
                 } else if(option == 7) {
                     if(client.subjectSet != null) {
                         client.output.writeObject(sendSubjectSet());
                     } else {
                         System.out.println("Please get your timetable first,before pushing subjects in");
                     }
+                } else if(option == 8) {
+
+                    Calendar calendar = Calendar.getInstance();
+                    int day = calendar.get(Calendar.DAY_OF_WEEK);
+                    if(day == 2)
+                    {
+                        Iterator it = client.timetable.Monday.entrySet().iterator();
+                        while (it.hasNext()) {
+                            Map.Entry pair = (Map.Entry)it.next();
+                            System.out.println(pair.getKey() + " = " + pair.getValue());
+
+                            it.remove(); // avoids a ConcurrentModificationException
+                        }
+                    } else
+                    if(day == 3)
+                    {
+
+                    } else
+                    if(day == 4)
+                    {
+
+                    } else
+                    if(day == 5)
+                    {
+
+                    } else
+                    if(day == 6)
+                    {
+
+                    }
+
+
+
                 }
             } catch (IOException e) {
 
