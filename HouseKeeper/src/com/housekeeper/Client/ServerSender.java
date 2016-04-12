@@ -32,7 +32,7 @@ public class ServerSender implements Runnable {
         System.out.println("5. Send a private message ");
         System.out.println("6. Get Time Table ");
         System.out.println("7. Send subject Set");
-        System.out.println("7. Send In Attendance");
+        System.out.println("8. Send In Attendance");
 
 
         option = inputLine.nextInt();
@@ -69,33 +69,36 @@ public class ServerSender implements Runnable {
 
                     Calendar calendar = Calendar.getInstance();
                     int day = calendar.get(Calendar.DAY_OF_WEEK);
-                    if(day == 2)
-                    {
-                        Iterator it = client.timetable.Monday.entrySet().iterator();
-                        while (it.hasNext()) {
-                            Map.Entry pair = (Map.Entry)it.next();
-                            System.out.println(pair.getKey() + " = " + pair.getValue());
 
-                            it.remove(); // avoids a ConcurrentModificationException
+
+
+                    /*while (it.hasNext()) {
+                        Map.Entry pair = (Map.Entry)it.next();
+                        System.out.println(pair.getKey() + " = " + pair.getValue());
+
+                        it.remove(); // avoids a ConcurrentModificationException
+                    }*/
+                    Integer[] attendence = new Integer[client.subjectSet.length];
+
+                    for(int i=0;i<client.subjectSet.length;i++) {
+                        if(client.timetable.Tuesday.get(client.subjectSet[i]) != null) {
+                            System.out.println("Did you attend  "+ client.timetable.Tuesday.get(client.subjectSet[i]) +" classes of " +client.subjectSet[i] + " ? (1/0) ");
+                            if (inputLine.nextInt() == 1) {
+
+                                attendence[i] = client.timetable.Tuesday.get(client.subjectSet[i]);
+                            } else {
+                                attendence[i] = 0;
+                            }
+                        } else {
+                            attendence[i] = 0;
                         }
-                    } else
-                    if(day == 3)
-                    {
-
-                    } else
-                    if(day == 4)
-                    {
-
-                    } else
-                    if(day == 5)
-                    {
-
-                    } else
-                    if(day == 6)
-                    {
-
                     }
 
+                    for(int i = 0;i<attendence.length;i++) {
+                        System.out.println(attendence[i]);
+                    }
+
+                    client.output.writeObject(sendAttendanceList(attendence));
 
 
                 }
@@ -106,8 +109,11 @@ public class ServerSender implements Runnable {
         }
     }
 
+    private Attendance sendAttendanceList(Integer[] attendance) {
+        return new Attendance(attendance);
+    }
+
     private Subjects sendSubjectSet() {
-        System.out.println(client.subjectSet);
         return new Subjects(client.subjectSet);
     }
 

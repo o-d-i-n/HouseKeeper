@@ -66,7 +66,7 @@ public class TimeTable extends Packet {
             if(Tuesday.get(temp[1]) == null) {
                 Tuesday.put(temp[1], 1);
             } else {
-                Tuesday.put(temp[1],Tuesday.get(temp[1]));
+                Tuesday.put(temp[1],Tuesday.get(temp[1])+ 1);
             }
 
         }

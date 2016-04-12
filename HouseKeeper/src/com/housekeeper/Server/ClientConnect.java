@@ -114,7 +114,6 @@ public class ClientConnect implements Runnable{
 
     private boolean auth(Packet student) throws IOException, SQLException {
 
-        System.out.println("Recieved Stuff");
 
         if(student.type == Packet.Type.STUDENT_INFO) {
 
@@ -200,7 +199,7 @@ public class ClientConnect implements Runnable{
 
                         String[] features = RollNumberParser.rollNumberParser(roll_number);
                         int timeTableCode = RollNumberParser.timeTableCodeGen(Integer.parseInt(studentInfo.section), Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(features[2]), features[1]);
-                        System.out.println(timeTableCode);
+
                         TimeTable timetable = select.getTimeTable(timeTableCode);
                         sendToClient(timetable);
                     } else {
@@ -218,6 +217,12 @@ public class ClientConnect implements Runnable{
             Subjects subject = (Subjects)student;
             insert.subjects(subject.subjects,studentInfo.user_id);
 
+            return true;
+        } else if(student.type == Packet.Type.ATTENDANCE) {
+
+            Attendance aat = (Attendance)student;
+            insert.sendAttendance(aat,select,studentInfo.user_id);
+            sendToClient(new ClientPacket("Success !!"));
             return true;
         }
 

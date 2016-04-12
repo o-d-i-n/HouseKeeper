@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 public class Select {
 
-    private Database connection;
+    public Database connection;
     private String sql;
     private String[] temp;
 
@@ -136,9 +136,11 @@ public class Select {
             else
                 final_day = final_day + better;
         }
+
         return final_day;
     }
-    private boolean executeStatement(String sql) throws SQLException {
+
+    public boolean executeStatement(String sql) throws SQLException {
         return connection.getData(sql);
     }
 

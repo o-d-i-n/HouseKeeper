@@ -11,8 +11,7 @@ public class Subjects extends Packet {
 
     public Object[] subjects;
 
-    public Subjects(Set<String> subjectz) {
-        this.subjects = subjectz.toArray();
-        this.type = Type.SUBJECTS;
+    public Subjects(Object[] subjects) {
+        this.subjects = subjects;
     }
 }

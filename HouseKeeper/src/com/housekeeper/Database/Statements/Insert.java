@@ -5,6 +5,7 @@ package com.housekeeper.Database.Statements;
  */
 
 import com.housekeeper.Database.Database;
+import com.housekeeper.Packet.client.Attendance;
 import com.housekeeper.Packet.client.StudentRegister;
 
 import java.sql.SQLException;
@@ -39,6 +40,7 @@ public class Insert {
         connection.sendData(sql);
 
     }
+
     public void subjects(Object[] sub,String user_id) throws SQLException {
 
         sql = "INSERT INTO `studentsubjects`(`user_id`, `subject1`, `subject2`, `subject3`, `subject4`, `subject5`) VALUES (" +
@@ -47,4 +49,36 @@ public class Insert {
         connection.sendData(sql);
     }
 
+    public void sendAttendance(Attendance aat,Select select,String user_id) throws SQLException {
+        sql = "SELECT * FROM `attendance` WHERE `user_id` = '"+user_id+"'";
+
+        select.executeStatement(sql);
+        Integer subject1 = 0,subject2=0,subject3=0,subject4=0,subject5=0;
+        int flag = 0;
+        while(select.connection.resultSet.next()) {
+            flag = 1;
+            subject1 += Integer.parseInt(select.connection.resultSet.getString("subject1"));
+            subject2 += Integer.parseInt(select.connection.resultSet.getString("subject2"));
+            subject3 += Integer.parseInt(select.connection.resultSet.getString("subject3"));
+            subject4 += Integer.parseInt(select.connection.resultSet.getString("subject4"));
+            subject5 += Integer.parseInt(select.connection.resultSet.getString("subject5"));
+            System.out.println(subject2);
+        }
+
+        //System.out.println(user_id + "yo");
+        subject1 += aat.attendance[0];
+        subject2 += aat.attendance[1];
+        subject3 += aat.attendance[2];
+        subject4 += aat.attendance[3];
+        subject5 += aat.attendance[4];
+
+        if(flag == 1) {
+            sql = "UPDATE `attendance` SET `subject1`='"+subject1+"',`subject2`='"+subject2+"',`subject3`='"+subject3+"',`subject4`='"+subject4+"',`subject5`='"+subject5+"' WHERE `user_id`='"+user_id+"'";
+        } else {
+            sql = "INSERT INTO `attendance`(`user_id`, `subject1`, `subject2`, `subject3`, `subject4`, `subject5`) VALUES ('"+user_id+"','"+subject1+"','"+subject2+"','"+subject3+"','"+subject4+"','"+subject5+"')";
+        }
+
+        connection.sendData(sql);
+
+    }
 }

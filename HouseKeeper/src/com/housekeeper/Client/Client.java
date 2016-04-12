@@ -29,7 +29,7 @@ public class Client  implements Runnable {
     List<String> connectedUsers = new ArrayList<String>();
     Thread listeningThread = null;
     Thread recievingThread = null;
-    Set<String> subjectSet;
+    Object[] subjectSet;
 
     public Client() {
 
@@ -69,7 +69,7 @@ public class Client  implements Runnable {
     public void connectToServer() throws IOException{
 
         System.out.println("Attempting to connect..");
-        connection = new Socket("192.168.1.111",9000);
+        connection = new Socket("192.168.0.107",9000);
         System.out.println("Connected!!");
     }
 
@@ -109,7 +109,7 @@ public class Client  implements Runnable {
         } else if(p.type == Packet.Type.TIMETABLE) {
 
                 timetable = (TimeTable) p;
-                this.subjectSet = timetable.displayTimeTable();
+                this.subjectSet = timetable.displayTimeTable().toArray();
 
 
         }
