@@ -7,7 +7,7 @@ package com.housekeeper.Server;
 public class ServerMain{
 
     private int port;
-    private Server server;
+    public Server server;
 
     public ServerMain(int port){
         this.port = port;

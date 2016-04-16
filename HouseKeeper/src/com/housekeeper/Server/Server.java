@@ -78,7 +78,7 @@ public class Server implements Runnable{
         this.threadPool.execute(newClient);
     }
 
-    private synchronized boolean isStopped() {
+    private synchronized boolean isliStopped() {
         return this.running;
     }
 

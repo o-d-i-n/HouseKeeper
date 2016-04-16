@@ -22,6 +22,7 @@ public class Client  implements Runnable {
     private Socket connection;
     public ObjectOutputStream output;
     public ObjectInputStream input;
+    public ServerSender sender;
     public boolean running;
     TimeTable timetable;
     public String roll_number;
@@ -50,7 +51,7 @@ public class Client  implements Runnable {
 
     public void run() {
 
-        ServerSender sender = new ServerSender(this);
+        this.sender = new ServerSender(this);
         listeningThread = new Thread(sender,"Sender");
         listeningThread.start();
 

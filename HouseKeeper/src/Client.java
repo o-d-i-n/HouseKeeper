@@ -1,22 +1,20 @@
 /**
- * Created by Lenovo on 4/8/2016.
+ * Created by Lenovo on 4/16/2016.
  */
 
 import com.housekeeper.Server.ServerMain;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Server extends Application {
+public class Client extends Application {
 
-    Button serverStart,serverStop;
+    Button login,register;
     Stage window;
+    com.housekeeper.Client.Client client;
     Scene scene1,scene2;
     ServerMain server;
 
@@ -26,15 +24,16 @@ public class Server extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         window = primaryStage;
 
         Label label1 = new Label("Start the server");
         Label label2 = new Label("Stop the server");
-
-        serverStart = new Button();
-        serverStart.setText("Start your server,grl");
-        serverStart.setOnAction(e -> {
-            server = new ServerMain(9000);
+        client = new com.housekeeper.Client.Client();
+        login = new Button();
+        login.setText("Start your server,grl");
+        login.setOnAction(e -> {
+            client.sender.
             window.setScene(scene2);
         });
 
@@ -56,7 +55,6 @@ public class Server extends Application {
 
         window.setScene(scene1);
         window.show();
+
     }
-
-
 }
