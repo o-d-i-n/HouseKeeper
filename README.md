@@ -80,5 +80,14 @@ Adds client to the connectedUsers List. Again, useful for messaging and broadcas
 
 
 ### ClientConnect Class
+Coming Soon..
 
-## Coming Soon..
+#### Contributors
+<!-- Contributors START
+Karan_Chahal karanchahal https://github.com/karanchahal code doc
+Mayank_Badola mbad0la https://github.com/mbad0la doc
+Contributors END -->
+<!-- Contributors table START -->
+| [![Karan Chahal](https://avatars.githubusercontent.com/karanchahal?s=100)<br /><sub>Karan Chahal</sub>](https://github.com/karanchahal)<br />[💻](https://github.com/o-d-i-n/HouseKeeper/commits?author=karanchahal) [📖](https://github.com/o-d-i-n/HouseKeeper/commits?author=karanchahal) | [![Mayank Badola](https://avatars.githubusercontent.com/mbad0la?s=100)<br /><sub>Mayank Badola</sub>](https://github.com/mbad0la)<br />[📖](https://github.com/o-d-i-n/HouseKeeper/commits?author=mbad0la) |
+| :---: | :---: |
+<!-- Contributors table END -->
