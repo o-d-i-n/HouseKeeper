@@ -13,5 +13,6 @@ public class Subjects extends Packet {
 
     public Subjects(Object[] subjects) {
         this.subjects = subjects;
+
     }
 }
