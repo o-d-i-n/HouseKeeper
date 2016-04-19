@@ -109,6 +109,10 @@ public class ServerSender implements Runnable {
         }
     }
 
+    public void login(String roll_number,String password) throws IOException {
+        client.output.writeObject(new StudentLogin(roll_number,password));
+    }
+
     private Attendance sendAttendanceList(Integer[] attendance) {
         return new Attendance(attendance);
     }

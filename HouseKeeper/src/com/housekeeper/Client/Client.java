@@ -70,7 +70,7 @@ public class Client  implements Runnable {
     public void connectToServer() throws IOException{
 
         System.out.println("Attempting to connect..");
-        connection = new Socket("192.168.0.107",9000);
+        connection = new Socket("192.168.43.144",9000);
         System.out.println("Connected!!");
     }
 

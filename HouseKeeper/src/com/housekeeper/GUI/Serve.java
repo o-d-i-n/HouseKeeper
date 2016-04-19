@@ -1,8 +1,8 @@
-/**
- * Created by Lenovo on 4/16/2016.
+package com.housekeeper.GUI;/**
+ * Created by Lenovo on 4/19/2016.
  */
 
-import com.housekeeper.Server.ServerMain;
+import com.housekeeper.Server.Server;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,13 +10,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Client extends Application {
+public class Serve extends Application {
 
-    Button login,register;
+    Button serverStart,serverStop;
     Stage window;
-    com.housekeeper.Client.Client client;
     Scene scene1,scene2;
-    ServerMain server;
+    Server server;
 
     public static void main(String[] args) {
         launch(args);
@@ -24,16 +23,15 @@ public class Client extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
         window = primaryStage;
 
         Label label1 = new Label("Start the server");
         Label label2 = new Label("Stop the server");
-        client = new com.housekeeper.Client.Client();
-        login = new Button();
-        login.setText("Start your server,grl");
-        login.setOnAction(e -> {
-            client.sender.
+
+        serverStart = new Button();
+        serverStart.setText("Start your server,grl");
+        serverStart.setOnAction(e -> {
+            server = new Server(9000);
             window.setScene(scene2);
         });
 
@@ -45,7 +43,7 @@ public class Client extends Application {
         serverStop = new Button();
         serverStop.setText("Stop your server");
         serverStop.setOnAction(e -> {
-            server.server.stop();
+            server.stop();
             window.setScene(scene1);
         });
 
@@ -55,6 +53,5 @@ public class Client extends Application {
 
         window.setScene(scene1);
         window.show();
-
     }
 }
