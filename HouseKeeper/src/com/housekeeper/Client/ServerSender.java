@@ -199,4 +199,7 @@ public class ServerSender implements Runnable {
         client.output.writeObject(new StudentReq(text));
     }
 
+    public void sendChatMessage(String to_roll_number,String text) throws IOException {
+        client.output.writeObject(new ChatPacket(to_roll_number,client.roll_number,text));
+    }
 }

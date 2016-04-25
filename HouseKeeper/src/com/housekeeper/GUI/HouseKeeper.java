@@ -30,6 +30,7 @@ public class HouseKeeper extends Application {
     Client client;
     Scene loginScene;
     Scene home;
+    TextArea chatBox;
 
     public static void main(String[] args) {
         launch(args);
@@ -39,7 +40,8 @@ public class HouseKeeper extends Application {
     public void start(Stage primaryStage) {
 
         window = primaryStage;
-        client = new Client();
+        chatBox = new TextArea();
+        client = new Client(chatBox);
         Label label1 = new Label("Login");
         TextField username = new TextField("roll_number");
         TextField password = new TextField("password");
@@ -114,6 +116,7 @@ public class HouseKeeper extends Application {
         loginScene = new Scene(layout1,200,300);
 
         Button getInfo = new Button();
+        getInfo.setText("Get Student Info");
         TextField getStudent = new TextField("Enter student's roll number");
 
         getInfo.setOnAction(e ->{
@@ -121,7 +124,7 @@ public class HouseKeeper extends Application {
                 client.sender.getStudentInfo(getStudent.getText());
 
                 String s = "";
-                s = "Name : \n" + client.random_user.name  + "\nSection \n" + client.random_user.section + "Percentage \n" + client.random_user.percentage + "Branch \n" + client.random_user.branch + " " ;
+                s = "Name : \n" + client.random_user.name  + "\nSection \n" + client.random_user.section + "\nPercentage \n" + client.random_user.percentage + "\nBranch \n" + client.random_user.branch + " " ;
                 clients.setText(s);
 
             } catch (IOException e1) {
@@ -142,14 +145,24 @@ public class HouseKeeper extends Application {
 
         BorderPane chat = new BorderPane();
 
-        TextArea chatBox = new TextArea();
+
         TextField chat_roll_number = new TextField("Send to ?");
+        TextField chatMessage = new TextField("Write Message");
         sendMessage = new Button();
         sendMessage.setText("Send message");
         chat.setRight(chatBox);
         chat.setLeft(chat_roll_number);
+        chat.setTop(chatMessage);
         chat.setCenter(sendMessage);
         layout2.setTop(chat);
+
+        sendMessage.setOnAction(e -> {
+            try {
+                client.sender.sendChatMessage(chat_roll_number.getText(),chatMessage.getText());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
 
         sendStudentInfo.setOnAction(e -> {
             try {

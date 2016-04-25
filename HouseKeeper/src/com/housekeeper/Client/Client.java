@@ -3,6 +3,7 @@ package com.housekeeper.Client;
 import com.housekeeper.Packet.Packet;
 import com.housekeeper.Packet.client.*;
 import com.housekeeper.Packet.server.ClientPacket;
+import javafx.scene.control.TextArea;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -32,9 +33,10 @@ public class Client  implements Runnable {
     Thread listeningThread = null;
     Thread recievingThread = null;
     Object[] subjectSet;
+    TextArea chatBox;
 
-    public Client() {
-
+    public Client(TextArea chatBox) {
+        this.chatBox = chatBox;
         try {
 
             connectToServer();
@@ -49,6 +51,8 @@ public class Client  implements Runnable {
         listeningThread = new Thread(this,"Listener");
         listeningThread.start();
     }
+
+
 
     public void run() {
 
@@ -102,6 +106,8 @@ public class Client  implements Runnable {
         } else if(p.type == Packet.Type.CHAT) {
             ChatPacket chat = (ChatPacket) p;
             System.out.println(chat.from + "says : " + chat.message);
+            String s = chat.from + "says : " + chat.message;
+            chatBox.setText(chatBox.getText() + "\n" + s);
 
         } else if(p.type == Packet.Type.CONNECTED_USERS) {
             ConnectedUsers users = (ConnectedUsers) p;
