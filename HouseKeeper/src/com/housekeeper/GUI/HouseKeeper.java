@@ -30,6 +30,7 @@ public class HouseKeeper extends Application {
     Client client;
     Scene loginScene;
     Scene home;
+    Button register;
     TextArea chatBox;
 
     public static void main(String[] args) {
@@ -40,7 +41,9 @@ public class HouseKeeper extends Application {
     public void start(Stage primaryStage) {
 
         window = primaryStage;
+
         chatBox = new TextArea();
+        chatBox.setText("Chat Messenger \n");
         client = new Client(chatBox);
         Label label1 = new Label("Login");
         TextField username = new TextField("roll_number");
@@ -63,6 +66,19 @@ public class HouseKeeper extends Application {
         getTimeTable.setText("Get Time table");
 
         login.setText("Login,grl");
+
+        register = new Button();
+        register.setText("Register");
+        register.setOnAction(e -> {
+
+            try {
+                client.sender.register(username.getText(),password.getText());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+        });
+
         login.setOnAction(e -> {
             try {
 
@@ -91,6 +107,7 @@ public class HouseKeeper extends Application {
                 }
 
                 for(int i=0;i<client.connectedUsers.size();i++) {
+                    s = "Online Clients \n";
                     s += "\n" +  client.connectedUsers.get(i);
                 }
 
@@ -112,7 +129,7 @@ public class HouseKeeper extends Application {
         });
 
         VBox layout1 = new VBox();
-        layout1.getChildren().addAll(label1,login,username,password);
+        layout1.getChildren().addAll(label1,login,register,username,password);
         loginScene = new Scene(layout1,200,300);
 
         Button getInfo = new Button();
@@ -124,7 +141,8 @@ public class HouseKeeper extends Application {
                 client.sender.getStudentInfo(getStudent.getText());
 
                 String s = "";
-                s = "Name : \n" + client.random_user.name  + "\nSection \n" + client.random_user.section + "\nPercentage \n" + client.random_user.percentage + "\nBranch \n" + client.random_user.branch + " " ;
+                if(client.random_user != null)
+                    s = "Name : \n" + client.random_user.name  + "\nSection \n" + client.random_user.section + "\nPercentage \n" + client.random_user.percentage + "\nBranch \n" + client.random_user.branch + " " ;
                 clients.setText(s);
 
             } catch (IOException e1) {
@@ -132,24 +150,26 @@ public class HouseKeeper extends Application {
             }
         });
 
+        TextField chat_roll_number = new TextField("Send to ?");
+        TextField chatMessage = new TextField("Write Message");
+        sendMessage = new Button();
+        sendMessage.setText("Send message");
+
+
         BorderPane layout2 = new BorderPane();
         layout2.setCenter(seeConnectedClients);
         layout2.setLeft(getTimeTable);
         layout2.setRight(clients);
         VBox StudentInfo = new VBox();
-        StudentInfo.getChildren().addAll(name,branch,section,percentage,sendStudentInfo,getTimeTable,getInfo,getStudent);
+        StudentInfo.getChildren().addAll(name,branch,section,percentage,sendStudentInfo,getTimeTable,getStudent,getInfo);
         layout2.setLeft(StudentInfo);
-
 
 
 
         BorderPane chat = new BorderPane();
 
 
-        TextField chat_roll_number = new TextField("Send to ?");
-        TextField chatMessage = new TextField("Write Message");
-        sendMessage = new Button();
-        sendMessage.setText("Send message");
+
         chat.setRight(chatBox);
         chat.setLeft(chat_roll_number);
         chat.setTop(chatMessage);

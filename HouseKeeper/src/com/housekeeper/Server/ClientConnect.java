@@ -159,14 +159,14 @@ public class ClientConnect implements Runnable{
 
            StudentRegister registerAttempt = (StudentRegister)student;
 
-           if(!select.checkIfUser(registerAttempt)) {
+
                insert.studentInfo(registerAttempt, "user");
 
                System.out.println("Roll Number : " + registerAttempt.roll_number + " is registered");
                sendToClient(new ClientPacket("Congratulations,you're registered.You should login to access your account"));
 
                return true;
-           }
+
 
 
 
