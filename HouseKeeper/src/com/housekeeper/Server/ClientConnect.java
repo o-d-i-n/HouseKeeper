@@ -224,6 +224,9 @@ public class ClientConnect implements Runnable{
             insert.sendAttendance(aat,select,studentInfo.user_id);
             sendToClient(new ClientPacket("Success !!"));
             return true;
+        } else if(student.type == Packet.Type.STUDENT_REQ) {
+            StudentInfo sent = select.getStudentInfoz(student.roll_number);
+            sendToClient(sent);
         }
 
         return false;

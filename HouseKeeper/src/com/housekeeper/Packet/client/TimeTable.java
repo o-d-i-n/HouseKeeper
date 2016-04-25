@@ -15,6 +15,7 @@ public class TimeTable extends Packet {
     String[] wednesday;
     String[] thursday;
     String[] friday;
+    public String s = "";
 
     public HashMap<String,Integer> subjects = new HashMap<>(); // a map for all the subjects the student has
     public HashMap<String,Integer> Monday = new HashMap<>();
@@ -40,12 +41,15 @@ public class TimeTable extends Packet {
 
     public Set<String> displayTimeTable() {
         String[] temp;
-
+        s = "";
         System.out.println("MONDAY");
+        s += "MONDAY" + "\n";
         System.out.println("TIME  CLASS  ROOM NO.");
+        s += "TIME  CLASS  ROOM NO." + "\n";
         for(int i=0;i<monday.length;i++) {
             temp = monday[i].split("!");
             System.out.println(temp[0] + "  " + temp[1] + "  " + temp[2]);
+            s += temp[0] + "  " + temp[1] + "  " + temp[2]+ "\n";
             subjects.put(temp[1],1); // putting in all the subjects into the map
 
             if(Monday.get(temp[1]) == null) {
@@ -57,10 +61,13 @@ public class TimeTable extends Packet {
         }
 
         System.out.println("TUESDAY");
+        s += "TUESDAY" + "\n";
         System.out.println("TIME  CLASS  ROOM NO.");
+        s += "TIME  CLASS  ROOM NO." + "\n";
         for(int i=0;i<tuesday.length;i++) {
             temp = tuesday[i].split("!");
             System.out.println(temp[0] + "  " + temp[1] + "  " + temp[2]);
+            s += temp[0] + "  " + temp[1] + "  " + temp[2]+ "\n";
             subjects.put(temp[1],1);
 
             if(Tuesday.get(temp[1]) == null) {
@@ -72,10 +79,13 @@ public class TimeTable extends Packet {
         }
 
         System.out.println("WEDNESDAY");
+        s += "WEDNESDAY" + "\n";
         System.out.println("TIME  CLASS  ROOM NO.");
+        s += "TIME  CLASS  ROOM NO." + "\n";
         for(int i=0;i<wednesday.length;i++) {
             temp = wednesday[i].split("!");
             System.out.println(temp[0] + "  " + temp[1] + "  " + temp[2]);
+            s += temp[0] + "  " + temp[1] + "  " + temp[2]+ "\n";
             subjects.put(temp[1],1);
 
             if(Wednesday.get(temp[1]) == null) {
@@ -87,10 +97,13 @@ public class TimeTable extends Packet {
         }
 
         System.out.println("THURSDAY");
+        s += "THURSDAY" + "\n";
         System.out.println("TIME  CLASS  ROOM NO.");
+        s += "TIME  CLASS  ROOM NO." + "\n";
         for(int i=0;i<thursday.length;i++) {
             temp = thursday[i].split("!");
             System.out.println(temp[0] + "  " + temp[1] + "  " + temp[2]);
+            s += temp[0] + "  " + temp[1] + "  " + temp[2]+ "\n";
             subjects.put(temp[1],1);
 
             if(Thursday.get(temp[1]) == null) {
@@ -102,10 +115,13 @@ public class TimeTable extends Packet {
         }
 
         System.out.println("FRIDAY");
+        s += "FRIDAY" + "\n";
         System.out.println("TIME  CLASS  ROOM NO.");
+        s += "TIME  CLASS  ROOM NO." + "\n";
         for(int i=0;i<friday.length;i++) {
             temp = friday[i].split("!");
             System.out.println(temp[0] + "  " + temp[1] + "  " + temp[2]);
+            s += temp[0] + "  " + temp[1] + "  " + temp[2]+ "\n";
             subjects.put(temp[1],1);
 
             if(Friday.get(temp[1]) == null) {

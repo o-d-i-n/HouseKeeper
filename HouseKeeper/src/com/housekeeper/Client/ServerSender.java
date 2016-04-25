@@ -48,7 +48,7 @@ public class ServerSender implements Runnable {
                 } else if (option == 2) {
                     client.output.writeObject(sendLoginRequest());
                 } else if (option == 3) {
-                    client.output.writeObject(sendStudentInfo());
+                    //client.output.writeObject(sendStudentInfo());
                 } else if(option == 4) {
                     displayConnectedUsers();
                 } else if(option == 5) {
@@ -109,7 +109,16 @@ public class ServerSender implements Runnable {
         }
     }
 
+    public void getTimetable() throws IOException {
+        if(client.timetable == null) {
+            client.output.writeObject(sendTimeTableReq());
+        } else {
+            client.timetable.displayTimeTable();
+        }
+    }
+
     public void login(String roll_number,String password) throws IOException {
+        client.roll_number = roll_number;
         client.output.writeObject(new StudentLogin(roll_number,password));
     }
 
@@ -162,10 +171,12 @@ public class ServerSender implements Runnable {
         return registerAttempt;
     }
 
-    public StudentInfo sendStudentInfo() {
 
-        StudentInfo student = new StudentInfo(Packet.Type.STUDENT_INFO,"Karanbir","COE",98,2,client.auth_code,client.roll_number);
-        return student;
+    public void sendStudentInfo(String name,String branch,int percentage,int section) throws IOException {
+
+        StudentInfo student = new StudentInfo(Packet.Type.STUDENT_INFO,name,branch,percentage,section,client.auth_code,client.roll_number);
+
+        client.output.writeObject(student);
         //Packet student = new Packet(Packet.Type.STUDENT_INFO,name,roll_number,section,percentage);
 
         //return student;
@@ -182,6 +193,10 @@ public class ServerSender implements Runnable {
         for(int i=0;i<client.connectedUsers.size();i++) {
             System.out.println(i+1 + ". " + client.connectedUsers.get(i));
         }
+    }
+
+    public void getStudentInfo(String text) throws IOException {
+        client.output.writeObject(new StudentReq(text));
     }
 
 }

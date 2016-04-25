@@ -1,6 +1,7 @@
 package com.housekeeper.Database.Statements;
 
 import com.housekeeper.Database.Database;
+import com.housekeeper.Packet.Packet;
 import com.housekeeper.Packet.client.StudentInfo;
 import com.housekeeper.Packet.client.StudentLogin;
 import com.housekeeper.Packet.client.StudentRegister;
@@ -77,6 +78,26 @@ public class Select {
 
     }
 
+    public StudentInfo getStudentInfoz(String roll_numberz) throws SQLException {
+        sql = "SELECT * FROM `user` WHERE `roll_number` = \"" + roll_numberz+"\"";
+        executeStatement(sql);
+
+        while(connection.resultSet.next()) {
+
+            String user_id = connection.resultSet.getString("user_id");
+            String roll_number = connection.resultSet.getString("roll_number");
+            String name = connection.resultSet.getString("name");
+            String section = connection.resultSet.getString("section");
+            String percentage = connection.resultSet.getString("percentage");
+            String branch = connection.resultSet.getString("branch");
+
+            return new StudentInfo(Packet.Type.STUDENT_REQ,name,branch,Integer.parseInt(percentage),Integer.parseInt(section),"NA",roll_number);
+
+        }
+
+        return null;
+
+    }
 
 
     public StudentInfo getStudentInfo(String roll_numberz) throws SQLException {
@@ -89,6 +110,8 @@ public class Select {
             String roll_number = connection.resultSet.getString("roll_number");
             String name = connection.resultSet.getString("name");
             String section = connection.resultSet.getString("section");
+            String percentage = connection.resultSet.getString("percentage");
+            String branch = connection.resultSet.getString("branch");
 
             return new StudentInfo(user_id,roll_number,section,name);
 

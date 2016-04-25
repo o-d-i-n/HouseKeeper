@@ -19,7 +19,8 @@ public abstract class Packet implements Serializable {
         CONNECTED_USERS,
         TIMETABLE,
         SUBJECTS,
-        ATTENDANCE
+        ATTENDANCE,
+        STUDENT_REQ
     }
     public String auth_code;
     public String roll_number;
