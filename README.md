@@ -5,6 +5,13 @@ A java application made to handle the boring parts of college.
 * Time Tables.
 * and So much more....
 
+# Build Instructions
+* Install IntelliJ IDE
+* Click on the HouseKeeper.IML file in your HouseKeeper IDE.This should load your entire project
+* To get MYSQL functioning, change the CLASSPATH to the location of the JDBC driver on your system
+* Run the Sql dump file on any functioning MySql admin panel to get your DB schema . (I use phpmyadmin)
+* Run the project
+
 ### Current Features
 * [x] **A multithreaded server-client system**
 * [x] **A packet system that allows for parsing of different types Of files(Timetables, Text, StudentInfo etc.)**  
