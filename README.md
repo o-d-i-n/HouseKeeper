@@ -182,6 +182,14 @@ The client side architecture and the packet class system will be explained in th
 
 
 
+## Screenshots (Beta)
+![alt tag](Screenshots/login.png)
+
+![alt tag](Screenshots/misc.png)
+
+![alt tag](Screenshots/main.png)
+
+![alt tag](Screenshots/chatting.png)
 
 #### Contributors
 <!-- Contributors START
