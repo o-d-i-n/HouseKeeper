@@ -29,10 +29,11 @@ public class Client  implements Runnable {
     public TimeTable timetable;
     public String roll_number;
     public String auth_code;
+    public Attendance att;
     public List<String> connectedUsers = new ArrayList<String>();
     Thread listeningThread = null;
     Thread recievingThread = null;
-    Object[] subjectSet;
+    public Object[] subjectSet;
     TextArea chatBox;
 
     public Client(TextArea chatBox) {
@@ -75,7 +76,7 @@ public class Client  implements Runnable {
     public void connectToServer() throws IOException{
 
         System.out.println("Attempting to connect..");
-        connection = new Socket("192.168.0.103",9000);
+        connection = new Socket("192.168.43.144",9000);
         System.out.println("Connected!!");
     }
 
@@ -119,6 +120,8 @@ public class Client  implements Runnable {
                 this.subjectSet = timetable.displayTimeTable().toArray();
         } else if(p.type == Packet.Type.STUDENT_REQ) {
                 random_user = (StudentInfo)p;
+        } else if(p.type ==  Packet.Type.GET_ATTEDANCE) {
+            att = (Attendance)p;
         }
     }
 

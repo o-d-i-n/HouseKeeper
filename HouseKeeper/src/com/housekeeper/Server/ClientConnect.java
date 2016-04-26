@@ -145,6 +145,8 @@ public class ClientConnect implements Runnable{
                 roll_number = loginAttempt.roll_number;
                 server.addToConnectedClientList(this);
 
+
+                studentInfo = select.getStudentInfoz(loginAttempt.roll_number);
                 //Sending confirmation back to the client
 
                 sendToClient(Auth);
@@ -227,6 +229,10 @@ public class ClientConnect implements Runnable{
         } else if(student.type == Packet.Type.STUDENT_REQ) {
             StudentInfo sent = select.getStudentInfoz(student.roll_number);
             sendToClient(sent);
+            return true;
+        } else if(student.type == Packet.Type.GET_ATTEDANCE) {
+            sendToClient(select.getAttendance(studentInfo.user_id));
+            return true;
         }
 
         return false;

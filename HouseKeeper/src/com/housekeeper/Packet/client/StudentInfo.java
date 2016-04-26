@@ -29,6 +29,18 @@ public class StudentInfo extends Packet {
         this.percentage = percentage;
         this.section = Integer.toString(section);
         this.type = type;
+
+    }
+
+    public StudentInfo(String user_id,Type type, String name, String branch, int percentage, int section, String auth_code, String roll_number) {
+        this.auth_code = auth_code;
+        this.roll_number = roll_number;
+        this.name = name;
+        this.branch =branch;
+        this.percentage = percentage;
+        this.section = Integer.toString(section);
+        this.type = type;
+        this.user_id = user_id;
     }
 
 }

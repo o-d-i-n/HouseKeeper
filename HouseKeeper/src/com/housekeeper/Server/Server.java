@@ -78,9 +78,6 @@ public class Server implements Runnable{
         this.threadPool.execute(newClient);
     }
 
-    private synchronized boolean isliStopped() {
-        return this.running;
-    }
 
     public synchronized void stop(){
         this.running = false;
@@ -91,7 +88,7 @@ public class Server implements Runnable{
         }
     }
 
-    public ClientConnect findClientConnection(String roll_number) {
+    public synchronized ClientConnect findClientConnection(String roll_number) {
         for(int i=0;i<Clients.size();i++) {
 
             if(Objects.equals(Clients.get(i).roll_number,roll_number)) {
@@ -101,7 +98,7 @@ public class Server implements Runnable{
         return null;
     }
 
-    public void addToConnectedClientList(ClientConnect client) {
+    public synchronized void addToConnectedClientList(ClientConnect client) {
         Clients.add(client);
         connectedUsers.add(client.roll_number);
     }

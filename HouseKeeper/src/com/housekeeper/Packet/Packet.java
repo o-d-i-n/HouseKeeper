@@ -20,7 +20,8 @@ public abstract class Packet implements Serializable {
         TIMETABLE,
         SUBJECTS,
         ATTENDANCE,
-        STUDENT_REQ
+        STUDENT_REQ,
+        GET_ATTEDANCE
     }
     public String auth_code;
     public String roll_number;

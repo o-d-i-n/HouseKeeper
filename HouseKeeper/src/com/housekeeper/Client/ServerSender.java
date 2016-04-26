@@ -109,6 +109,10 @@ public class ServerSender implements Runnable {
         }
     }
 
+    public void sendAttendance(Attendance attendance) throws IOException {
+        client.output.writeObject(attendance);
+    }
+
     public void getTimetable() throws IOException {
         if(client.timetable == null) {
             client.output.writeObject(sendTimeTableReq());
@@ -205,5 +209,9 @@ public class ServerSender implements Runnable {
 
     public void sendChatMessage(String to_roll_number,String text) throws IOException {
         client.output.writeObject(new ChatPacket(to_roll_number,client.roll_number,text));
+    }
+
+    public void getAttendance() throws IOException {
+        client.output.writeObject(new Attendance());
     }
 }

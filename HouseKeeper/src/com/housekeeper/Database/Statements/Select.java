@@ -2,10 +2,7 @@ package com.housekeeper.Database.Statements;
 
 import com.housekeeper.Database.Database;
 import com.housekeeper.Packet.Packet;
-import com.housekeeper.Packet.client.StudentInfo;
-import com.housekeeper.Packet.client.StudentLogin;
-import com.housekeeper.Packet.client.StudentRegister;
-import com.housekeeper.Packet.client.TimeTable;
+import com.housekeeper.Packet.client.*;
 import com.sun.deploy.util.StringUtils;
 
 import javax.management.relation.RoleList;
@@ -91,7 +88,7 @@ public class Select {
             String percentage = connection.resultSet.getString("percentage");
             String branch = connection.resultSet.getString("branch");
 
-            return new StudentInfo(Packet.Type.STUDENT_REQ,name,branch,Integer.parseInt(percentage),Integer.parseInt(section),"NA",roll_number);
+            return new StudentInfo(user_id,Packet.Type.STUDENT_REQ,name,branch,Integer.parseInt(percentage),Integer.parseInt(section),"NA",roll_number);
 
         }
 
@@ -118,6 +115,25 @@ public class Select {
         }
 
         return null;
+
+    }
+
+    public Attendance getAttendance(String user_id) throws SQLException {
+        sql = "SELECT * FROM `attendance` WHERE `user_id` = '" + user_id+ "'";
+        System.out.println(user_id);
+        executeStatement(sql);
+        String sub1="0",sub2="0",sub3="0",sub4="0",sub5="0";
+        while(connection.resultSet.next()) {
+            sub1 =  connection.resultSet.getString("subject1");
+            sub2 =  connection.resultSet.getString("subject2");
+            sub3 =  connection.resultSet.getString("subject3");
+            sub4 =  connection.resultSet.getString("subject4");
+            sub5 =  connection.resultSet.getString("subject5");
+        }
+
+        System.out.println(sub2);
+
+        return new Attendance(Integer.parseInt(sub1),Integer.parseInt(sub2),Integer.parseInt(sub3),Integer.parseInt(sub4),Integer.parseInt(sub5));
 
     }
 
